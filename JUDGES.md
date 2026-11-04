@@ -1,12 +1,14 @@
 # AI 심사위원용 검증 안내
 
+[제출용 브리핑 PDF](briefing.pdf)
+
 - LOTTE AX Challenge 2026 개인 참가 제출물입니다. 롯데칠성음료와 무관합니다.
 - 용도는 정량 조사 전 콘셉트 스크리닝입니다.
 - 사전 등록 FIT는 5개 조건을 각 3회, 동일한 합성 표본 300명에게 반복했습니다. 15회, 4,500개 판정 대상 응답 자리입니다.
 - 주 분석의 V1·V2·V3 대표성 기준은 모두 미달했습니다. 주종 순위 상관은 0.96, 평균 절대 차이는 19.10%p였습니다.
 - 운영 시연에서 대표성 미달로 신제품 가상 실행을 차단했습니다. 에이전트가 원인 진단과 선별을 수행했고, 작가가 새 검증을 승인했습니다.
-- 보정 진행 중. 결과는 공개 저장소 explore/에 단계마다 추가합니다.
-- [보정 최종 결과]
+- 문항·응답 방식을 바꾼 새 검증에서도 남성 고위험음주율은 실제 18.4% 대비 1~2%였습니다. 이후 음주 프로필·주음용 브랜드는 실측 자료로 부여하고, 모델에는 진열대 선택만 묻도록 바꿨습니다.
+- [테라 결과]
 
 ## 주장과 근거
 
@@ -52,8 +54,20 @@
 | 미달 시 차단 | 운영 서버가 시연에서 신제품 가상 실행 거부 | 차단 확인 | [3356763][ops-block] · 19:46:15 |
 | 원인 진단 | 에이전트가 기관 문항 원문과 오차 패턴을 대조 | 진단과 시험 계획 공개 | [48d4b25][ops-diagnosis] · 20:53:59 |
 | 30명 선별 | 작가가 사용할 실행 경로를 승인하고 에이전트가 보정 후보 선별 실행 | 선별 완료 | [9b09f31][ops-screen] · 21:07:38 |
-| 새 표본·새 문항 검증 | 작가가 재설계와 실행 범위를 승인하고 에이전트가 검증 실행 | 계획과 기준값 공개 · 결과 대기 | [da8d842][ops-holdout] · 21:18:31 |
+| 새 표본·새 문항 검증 | 작가가 재설계와 실행 범위를 승인하고 에이전트가 검증 실행 | 결과 공개 · 기준 미달 | [da8d842][ops-holdout] · 21:18:31 (계획), [1e5aa02][holdout-result] · 21:56:17 (집계) |
 | 통과 범주만 해제 | 운영 서버는 대표성과 같은 모델·모집단의 경쟁 세트 재현 등 실행 요건을 확인 | 조건부 운영 규칙 · 해제 사례 미확인 | [e512809][ops-rule] · 19:27:12 |
+
+## 근거의 세 층
+
+| 층 | 확인 대상 | 근거와 적용 범위 |
+|---|---|---|
+| 부여 정확도 | 인구·음주·주음용 브랜드 구성 | KOSIS 인구 가중, [실제 음주 프로필 부여와 검증용 70% 비교][assignment], [aT 목표 비율 대비 배정][terra-assignment]. 구성 점검과 신제품 선택 판정은 별도입니다. |
+| 백테스트 | 2018년 4분기 출시 전 시장을 부여한 테라 진열대 | [사전 등록][terra-prereg]. 중립 7종, 이름 공개·가림 양쪽에서 테라가 카스보다 낮고 하이트·클라우드보다 높아야 통과. Claude는 참고입니다. |
+| 검증 절차 | 승인과 사전 등록, 집계 대조, 차단과 실패 기록 | 위 운영 프로세스 표와 공개 실행 기록. 기존 FIT 집계는 봉인 응답으로 별도 재계산해 대조했습니다. |
+
+- **부여 정확도** · [부여 정확도]
+- **테라 백테스트 판정** · [테라 결과]
+- **데이터 연결 계획** · 성·연령별 구매 자료는 브랜드 배정, 사내 조사 원자료는 보정·검증, 출시작 판매·단종은 과거 출시 검증, 실제 가격은 카드의 추정 칸 교체에 사용합니다.
 
 ## 재현 방법
 
@@ -99,3 +113,8 @@ python3 -B -m unittest discover -s ops-console -p test_gate.py
 [ops-screen]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/9b09f31d969957d4119c2299c74cbb521a4536ef/explore/stage-c1.md
 [ops-holdout]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/da8d8426506f2f8517ef59d0f14f1488f8525945/explore/PLAN.md
 [ops-rule]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/e5128090dd3fd965f2df21468af9eb40bac956fe/ops-console/fit_console.py
+
+[holdout-result]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/1e5aa02af4847979a6c8383cca2e33a965eb5325/explore/stage-c2.md
+[assignment]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/10856ab92b36269022d422d0c8185592b7b18350/explore/stage-p-assign.md
+[terra-assignment]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/f8fa7f2058d16b7b302cdccf2bc8487ddfe12e71/explore/stage-t-assign.md
+[terra-prereg]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/f8fa7f2058d16b7b302cdccf2bc8487ddfe12e71/preregistration-TERRA.md
