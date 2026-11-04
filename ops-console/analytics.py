@@ -106,8 +106,8 @@ def sensitivity(demo,left,right):
  result.update(status='fail' if changed else 'pass',reason='1순위 브랜드 변동으로 신뢰 판정 제한' if changed else '선택한 두 실험의 1순위 브랜드 유지',changed=changed,total=len(result['shelves']),top_match=len(result['shelves'])-changed,max_shift_pp=max(x['max_shift_pp'] for x in result['shelves']),comparison_basis='기록된 모델 라벨·배치·질문 조건·응답자·제품 ID 일치. 실제 모델 판본과 원인 관계를 독립 입증하지 않음.')
  return result
 
-def provenance(project,name):
- p=project.parent.parent/'wiki/projects/lotte-ax-2026-returns'/('2026-11-04-'+name)/'verification.json'
+def provenance(inputs,name):
+ p=inputs/name/'verification.json'
  data=load(p,{})
  warnings=[]
  if any(str(x).startswith('source_changed:') for x in data.get('issues',[])):

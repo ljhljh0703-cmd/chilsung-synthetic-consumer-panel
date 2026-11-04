@@ -11,6 +11,7 @@ sys.path.insert(0,str(HERE))
 import config_editor
 import analytics
 import fit_console
+from ops_evidence import product_labels, reproduction
 PROJECT=Path(os.environ.get('OPS_PROJECT_ROOT', HERE.parent)).resolve()
 DEMO=Path(os.environ.get('OPS_DEMO_ROOT', HERE.parent/'demo')).resolve()
 STATE=Path(os.environ.get('OPS_STATE_DIR', HERE)).resolve()
@@ -51,7 +52,7 @@ def ingest(kind,rows,name):
 def specimens():
     base=read(DEMO/'config/sets.json',[]); out={}
     for group in base:
-        for p in group.get('products',[]): out[p['id']]={**p,'category':group.get('category','')}
+        for p in group.get('products',[]): out[p['id']]={**p,'category':group.get('category',''),'launch':group.get('launch','')}
     return list(out.values())
 
 def recompute(name,spec):
@@ -151,23 +152,60 @@ def detail(name,_seen=None):
         elif not (DEMO/'experiments'/f'{ident(ref)}.json').is_file():benchmark={'name':ref,'status':'unknown','reason':'연결한 재현 실험이 없습니다.'}
         else:
             r=detail(ref,seen);status='fail' if r['verdict']['status']=='fail' else r['checks']['reproduction']
-            benchmark={'name':ref,'status':status,'reason':r['verdict']['reason'],'primary_metric':r['primary_metric'],'report_hash':r['report_hash']}
+            prior=read(DEMO/'results'/ref/'settings.json',{})
+            benchmark={'name':ref,'status':status,'reason':r['verdict']['reason'],'primary_metric':r['primary_metric'],
+                       'report_hash':r['report_hash'],'population_id':prior.get('population_id'),
+                       'model':str(prior.get('model','')).split(':')[-1]}
         checks['reproduction']=benchmark['status']
-    evidence=read(out/'checks.json',{})
+    checks_path=STATE/'verdict-inputs'/name/'checks.json'
+    evidence=read(checks_path,{})
     for k in ['baseline','leakage','stability','noise']:
         e=evidence.get(k,{})
         if isinstance(e,dict) and e.get('status') in ['pass','fail'] and e.get('source'):checks[k]=e['status']
     if evidence.get('human_mismatch',{}).get('source'):checks['human_mismatch']=evidence['human_mismatch'].get('value') is True
-    pair=state().get('sensitivity_pairs',{}).get(name,{})
+    locked_input=verdict_inputs(name)
+    pair=locked_input.get('sensitivity_pair',{})
     sens=analytics.sensitivity(DEMO,pair.get('left'),pair.get('right'))
     checks['card_sensitivity']=sens['status']
-    prov=analytics.provenance(PROJECT,name)
+    source_dir=STATE/'verdict-inputs'
+    if not (source_dir/name/'verification.json').is_file():source_dir=HERE/'fixtures/verdict-inputs'
+    prov=analytics.provenance(source_dir,name)
     if prov['status']=='hold':checks['source_validity']='fail'
     primary_raw=analytics.raw_shares(DEMO,name,spec,primary)
     cautions=list(prov['warnings'])
     zeros=[sid for sid,x in primary_raw['shelves'].items() if x['valid_n']==0]
     if zeros:cautions.append('주 지표에서 유효 선택이 0인 경쟁 세트가 있습니다. 해당 세트의 순위·1위 적중을 성과로 해석하지 않습니다.')
     data={'name':name,'spec':spec,'metrics':metrics,'metric_key':key,'primary_metric':primary,'secondary_metrics':secondary,'primary_observations':primary_raw,'metrics_source':'두 기준 평가의 주음용 브랜드' if is_dual else 'known_eval.json' if stored else '응답 원문과 정답 자료 재계산','report':report,'display_report':analytics.term(report),'report_hash':hashlib.sha256(report.encode()).hexdigest(),'checks':checks,'verdict':verdict(checks),'benchmark':benchmark,'sensitivity':sens,'provenance':prov,'cautions':cautions,'locked':(out/'spec_locked.json').exists(),'log':(STATE/'logs'/f'{name}.log').read_text(errors='replace')[-18000:] if (STATE/'logs'/f'{name}.log').exists() else '', 'evidence':evidence,'calibrated':corrected_view(name,choice_metrics),'raw_choice':raw_choice,'brand_comparison':brand_comparison(name,spec,metrics)}
+    fit=fit_status()
+    settings=read(out/'settings.json',{})
+    data['receipt_id']=spec.get('receipt_id')
+    data['fit_gate']=fit_gate(spec,benchmark,fit) if spec.get('validation_reference') or spec.get('receipt_id') else None
+    if data['fit_gate'] is not None and settings and data['fit_gate']['allowed']:
+        if str(settings.get('model','')).split(':')[-1]!=data['fit_gate']['model']:
+            data['verdict']={'label':'판정 대기','display_label':'보류','status':'unknown',
+                             'reason':'실행 모델 불일치','show_rank':False}
+    if data['fit_gate'] is None and not settings.get('population_id'):
+        data['cautions'].append('정합성 검증 전 모집단으로 돌림 · 같은 모집단인지 확인할 수 없습니다.')
+    data['reproduction_rows']=reproduction(data,read(DEMO/(spec.get('truth_file') or 'config/known_truth.json'),{}),
+                                          product_labels(DEMO,specimens()))
+    data['concept_choices']=[]
+    if data['fit_gate'] and data['fit_gate']['allowed'] and data['verdict']['reason']!='실행 모델 불일치' and (out/'report.md').is_file():
+        for shelf in read(DEMO/(spec.get('sets_file') or 'config/sets_known.json'),[]):
+            product=next((p for p in shelf.get('products',[]) if p.get('target')),None)
+            observed=raw_choice['shelves'].get(shelf['id'],{})
+            if product and observed.get('valid_n'):
+                data['concept_choices'].append({'title':product.get('real_name',product['id']),
+                    'rate':observed['sim'].get(product['id'],0),'valid':observed['valid_n']})
+    fingerprint={'spec':spec,'responses':response_fingerprint(name),'pair':pair,
+                 'pair_responses':[response_fingerprint(pair[k]) for k in ('left','right') if pair.get(k)],
+                 'checks':fit_console.hash_file(checks_path),
+                 'source':[fit_console.hash_file(source_dir/name/f) for f in ('verification.json','source-reconciliation.json')],
+                 'fit':fit.get('sha256'),'fit_status':fit.get('status'),'rules':FIT_RULES,
+                 'truth':fit_console.hash_file(DEMO/spec['truth_file']) if spec.get('truth_file') else None,
+                 'sets':fit_console.hash_file(DEMO/spec['sets_file']) if spec.get('sets_file') else None,
+                 'primary':fit_console.hash_file(out/('known_eval_dual.json' if is_dual else 'known_eval.json')),
+                 'report':data['report_hash']}
+    data['verdict_fingerprint']=hashlib.sha256(json.dumps(fingerprint,sort_keys=True).encode()).hexdigest()
     data['display_report']=analytics.operating_report(data)
     return data
 
@@ -181,10 +219,25 @@ def experiments():
         j=s['jobs'].get(name); status=j['status'] if j else '끝' if (out/'report.md').exists() else '일부 응답 있음' if out.exists() else '대기'
         # A previous process cannot be called running after a server restart.
         if status=='실행 중' and name not in JOBS:status='실행 확인 필요'
-        rows.append({'name':name,'status':status,'n':sp.get('n'),'model':settings.get('model','미실행'),'goal':sp.get('goal',''),'locked':(out/'spec_locked.json').exists()})
+        rows.append({'name':name,'status':status,'n':sp.get('n'),'model':settings.get('model','미실행'),'receipt_id':sp.get('receipt_id'),
+                     'concept_title':sp.get('concept_title'),'goal':sp.get('goal',''),'locked':(out/'spec_locked.json').exists()})
     return rows,ledger
 
 FIT_RULES = fit_console.FIT_RULES
+
+
+def verdict_inputs(name):
+    path=STATE/'verdict-inputs'/f'{name}.json'
+    return read(path, read(HERE/'fixtures/verdict-inputs'/f'{name}.json',{}))
+
+
+def shortlist_memo(rows, receipt):
+    lines=['# 정량 조사 의뢰 메모','',f'접수 {receipt}']
+    for row in rows:
+        if row['receipt']==receipt and row.get('confirmed_by'):
+            lines += ['',f"## {row['concept']}",f"- 결정 {row['decision']}",f"- 이유 {row['reason']}",
+                      f"- 근거 {row['basis']}",f"- 당시 게이트 {row['gate']}",f"- 판정 입력 지문 {row['fingerprint']}"]
+    return '\n'.join(lines)+'\n'
 
 
 def fit_status():
@@ -216,6 +269,32 @@ def overview():
             'shortlist':[x for x in s.get('shortlist',[]) if x.get('confirmed_by')],
             'recent':actions[-5:][::-1],
             'reproduction':'미달' if any(x['name'] in ('T2','T4') for x in held) else '확인 필요'}
+
+
+def category_readiness():
+    latest={}
+    for name in ('T0','T1','T2','T3','T4'):
+        spec=read(DEMO/'experiments'/f'{name}.json',{})
+        report=DEMO/'results'/name/'report.md'
+        if not spec or not report.is_file():continue
+        shelves=read(DEMO/(spec.get('sets_file') or 'config/sets_known.json'),[])
+        checked=detail(name)
+        for category in {x.get('category') for x in shelves}:
+            latest[category]={'name':name,'status':checked['checks']['reproduction'],'reason':checked['verdict']['reason']}
+    return latest
+
+
+def receipt_progress(s, rows):
+    for receipt in s['receipts']:
+        exp=next((x for x in reversed(rows) if x.get('receipt_id')==receipt['id']),None)
+        done=[x for x in s.get('shortlist',[]) if x['receipt']==receipt['id'] and x.get('confirmed_by')]
+        if len(done)>=len(receipt.get('concepts') or [receipt]):
+            receipt.update(progress='정량 조사 후보 결정됨',next_role='조사 담당')
+        elif exp:
+            progress={'막힘':'막힘','끝':'실행 끝'}.get(exp['status'],'설정됨')
+            receipt.update(progress=progress,next_role='BM' if progress in ('막힘','실행 끝') else '조사 담당')
+        else:receipt.update(progress='설정 전',next_role='조사 담당')
+    return s
 
 
 def make_spec(s,d):
@@ -261,14 +340,52 @@ def make_spec(s,d):
     spec['ops_config_refs']=refs
     if receipt:
         spec['receipt_id']=receipt['id']
+        spec['concept_title']=receipt['title']
         spec['validation_reference']=ident(d.get('validation_reference') or 'T2')
         spec['flags'][spec['flags'].index('--batch')+1]='1'
         if '--per-person-order' not in spec['flags']:spec['flags'].append('--per-person-order')
+    sensitivity=d.get('sensitivity_pair')
+    if sensitivity:
+        peer=ident(sensitivity)
+        if not (DEMO/'experiments'/f'{peer}.json').is_file():raise ValueError('등록된 비교 실험을 선택하세요.')
+        dump(STATE/'verdict-inputs'/f'{name}.json',{'sensitivity_pair':{'left':name,'right':peer}},True)
     dump(p,spec,True);event(s,'실험 설정',{'name':name,'spec':spec});return spec
+
+def receive_concepts(s,d):
+    concepts=d['concepts']; competitors=d.get('competitors',[]); category=d.get('category')
+    if not isinstance(concepts,list) or not 1<=len(concepts)<=3:raise ValueError('콘셉트는 1~3개 접수할 수 있습니다.')
+    catalog={p['id']:p for p in specimens()}
+    if category not in {p['category'] for p in catalog.values()}:raise ValueError('등록된 경쟁 제품이 있는 범주를 고르세요.')
+    if not 2<=len(competitors)<=5 or len(set(competitors))!=len(competitors) or any(c not in catalog for c in competitors):
+        raise ValueError('서로 다른 경쟁 제품 2~5개를 고르세요.')
+    sets=[]; entries=[]; name=unique_name('OPS_CARD_')
+    for i,concept in enumerate(concepts,1):
+        title=str(concept.get('title','')).strip(); attrs=concept.get('attrs',{})
+        if not title or any(not str(attrs.get(k,'')).strip() for k in ATTRS):
+            raise ValueError(f'콘셉트 {i}의 이름과 7개 속성을 모두 채우세요.')
+        key=f'c{i}'; product={'id':f'{name}_{key}','real_name':title,'maker':'','target':True,
+                              'attrs':{k:str(attrs[k]).strip() for k in ATTRS}}
+        sets.append({'id':f'{name}_{key}','category':category,'launch':d.get('launch','현재'),
+                     'seen_at':'동네 마트·편의점','sample':'drinkers' if category in ('맥주','소주') else 'adults',
+                     'products':[product]+[{**catalog[c],'target':False} for c in competitors]})
+        entries.append({'id':key,'title':title})
+    path=f'config/sets_{name}.json'
+    dump(DEMO/path,sets,True)
+    receipt={'id':name,'created_at':now(),'category':category,'title':' / '.join(x['title'] for x in entries),
+             'concepts':entries,'sets_file':path}
+    s['receipts'].append(receipt);event(s,'콘셉트 접수',receipt);return receipt
+
 
 def mutate(action,d):
     with LOCK:
         s=state()
+        if action=='migrate-t2-pair':
+            pair=s.get('sensitivity_pairs',{}).get('T2')
+            path=STATE/'verdict-inputs/T2.json'
+            if pair and not path.exists():
+                dump(path,{'sensitivity_pair':pair},True)
+                event(s,'이전',{'name':'T2','sensitivity_pair':pair},actor='운영 도구')
+            return verdict_inputs('T2')
         if action=='fit-review':
             guard(s,['조사 담당'])
             note=str(d.get('memo','')).strip()
@@ -280,11 +397,57 @@ def mutate(action,d):
             lines=[info['display_report']]
             path=STATE/'reports'/name/'report.md';path.parent.mkdir(parents=True,exist_ok=True);path.write_text('\n'.join(lines),encoding='utf-8');event(s,'운영 보고서 생성',{'name':name,'path':str(path)});return {'path':str(path)}
         if action=='sensitivity':
-            guard(s,['BM','조사 담당','데이터 담당']);name=ident(d['name']);left=ident(d['left']);right=ident(d['right'])
-            if name not in (left,right):raise ValueError('현재 실험이 포함된 비교 쌍을 선택하세요.')
-            result=analytics.sensitivity(DEMO,left,right)
-            s.setdefault('sensitivity_pairs',{})[name]={'left':left,'right':right}
-            event(s,'자극물 민감도 비교 선택',{'name':name,'left':left,'right':right,'status':result['status']});return result
+            guard(s,['조사 담당']);name=ident(d['name']);left=ident(d['left']);right=ident(d['right'])
+            if name not in (left,right) or left==right:raise ValueError('현재 실험을 포함한 서로 다른 비교 쌍을 선택하세요.')
+            finished=(DEMO/'results'/name/'report.md').is_file() or (DEMO/'results'/name/'spec_locked.json').is_file()
+            reason=str(d.get('reason','')).strip()
+            if finished and not reason:raise ValueError('실행 뒤 비교 쌍을 바꾸려면 재판정 이유를 적으세요.')
+            previous=detail(name)
+            path=STATE/'verdict-inputs'/f'{name}.json'
+            dump(path,{**verdict_inputs(name),'sensitivity_pair':{'left':left,'right':right}})
+            updated=detail(name)
+            event(s,'재판정' if finished else '비교 쌍 지정',{'name':name,'left':left,'right':right,'reason':reason,
+                  'before':previous['verdict'],'after':updated['verdict'],'fingerprint':updated['verdict_fingerprint']})
+            return updated['sensitivity']
+        if action=='external-checks':
+            guard(s,['데이터 담당']);name=ident(d['name']);checks=d.get('checks')
+            if not isinstance(checks,dict) or not checks or any(k not in ('baseline','leakage','stability','noise','human_mismatch')
+                or not isinstance(v,dict) or not str(v.get('source','')).strip()
+                or (type(v.get('value')) is not bool if k=='human_mismatch' else v.get('status') not in ('pass','fail'))
+                for k,v in checks.items()):raise ValueError('검사 항목·결과와 출처를 확인하세요.')
+            target=STATE/'verdict-inputs'/name/'checks.json'
+            dump(target,checks)
+            event(s,'외부 점검 결과 연결',{'name':name,'sha256':fit_console.hash_file(target),'fingerprint':detail(name)['verdict_fingerprint']})
+            return {'status':'연결됨'}
+        if action in ('shortlist','shortlist-confirm'):
+            guard(s,['BM'] if action=='shortlist' else ['조사 담당'])
+            name=ident(d['name']);info=detail(name);rid=info.get('receipt_id')
+            receipt=next((x for x in s['receipts'] if x['id']==rid),None)
+            if not receipt:raise ValueError('콘셉트 접수로 만든 실험을 선택하세요.')
+            options=receipt.get('concepts') or [{'id':'c1','title':receipt['title']}]
+            concept=next((x for x in options if x['id']==d.get('concept')),None)
+            if not concept:raise ValueError('접수에 포함된 콘셉트를 선택하세요.')
+            rows=s.setdefault('shortlist',[])
+            pending=next((r for r in reversed(rows) if r['experiment']==name and r['concept_id']==concept['id']),None)
+            gate=info['fit_gate']
+            may_use=bool(gate and gate['allowed'] and info['concept_choices'] and info['verdict']['reason']!='실행 모델 불일치')
+            if action=='shortlist':
+                reason=str(d.get('reason','')).strip();decision=d.get('decision');basis=d.get('basis')
+                if not reason or decision not in ('올림','뺌','다음으로 미룸') or basis not in ('가상 결과','가상 결과 쓰지 않음(기존 방식)'):
+                    raise ValueError('결정·이유·근거를 적으세요.')
+                if basis=='가상 결과' and not may_use:raise ValueError('막힌 가상 결과를 후보 결정 근거로 쓸 수 없습니다.')
+                if pending and pending.get('confirmed_by'):raise ValueError('이미 확정된 콘셉트입니다.')
+                if pending:rows.remove(pending)
+                row={'receipt':rid,'experiment':name,'concept_id':concept['id'],'concept':concept['title'],'decision':decision,
+                     'reason':reason,'basis':basis,'gate':gate['status'] if gate else '확인 불가',
+                     'proposed_by':s['role'],'proposed_at':now(),'fingerprint':info['verdict_fingerprint']}
+                rows.append(row);event(s,'정량 조사 후보 제안',row);return row
+            if not pending or pending.get('confirmed_by') or pending['proposed_by']==s['role']:
+                raise ValueError('BM이 제안한 미확정 결정을 선택하세요.')
+            if pending['fingerprint']!=info['verdict_fingerprint'] or (pending['basis']=='가상 결과' and not may_use):
+                raise ValueError('판정 입력이 바뀌었습니다. BM이 다시 제안해야 합니다.')
+            pending.update(confirmed_by=s['role'],confirmed_at=now())
+            event(s,'정량 조사 후보 확정',pending);return pending
         if action=='config':
             kind=d.get('kind');guard(s,['데이터 담당'] if kind=='population' else ['조사 담당','데이터 담당'])
             def finite(v):
@@ -304,7 +467,9 @@ def mutate(action,d):
             if d.get('role') not in ROLES:raise ValueError('알 수 없는 역할')
             prev=s['role'];s['role']=d['role'];event(s,'역할 변경',{'from':prev,'to':s['role']});return s
         if action=='cards':
-            guard(s,['BM']); products=d.get('products',[])
+            guard(s,['BM'])
+            if 'concepts' in d:return receive_concepts(s,d)
+            products=d.get('products',[])
             if not 2<=len(products)<=6:raise ValueError('시안과 경쟁 제품을 합쳐 2~6개 넣으세요.')
             if len({x.get('id') for x in products})!=len(products):raise ValueError('제품 번호가 중복됩니다.')
             name=unique_name('OPS_CARD_'); rows=[]
@@ -357,8 +522,10 @@ def mutate(action,d):
             guard(s,['BM','조사 담당']);name=ident(d['name']);info=detail(name);kind=d.get('decision')
             if kind not in ['승인','반려','메모']:raise ValueError('처리 유형 오류')
             if not str(d.get('memo','')).strip():raise ValueError('처리 이유를 적으세요.')
-            if kind=='승인' and info['verdict']['label'] in ['포기','판정 대기'] and d.get('route')!='사람 조사':raise ValueError('지금은 사람 조사 전환만 승인할 수 있습니다.')
-            event(s,kind,{'name':name,'route':d.get('route','사람 조사'),'memo':d['memo'],'verdict':info['verdict']});return info['verdict']
+            if kind=='승인' and info['verdict']['label'] in ['포기','판정 대기'] and d.get('route')!='사람 조사':
+                event(s,'순위 사용 승인 거절',{'name':name,'fingerprint':info['verdict_fingerprint']})
+                raise ValueError('지금은 사람 조사 전환만 승인할 수 있습니다.')
+            event(s,kind,{'name':name,'route':d.get('route','사람 조사'),'memo':d['memo'],'verdict':info['verdict'],'fingerprint':info['verdict_fingerprint']});return info['verdict']
         if action=='survey':
             guard(s,['조사 담당']);name=ident(d['name']);original=read(DEMO/'experiments'/f'{name}.json')
             if not original:raise ValueError('연결할 실험이 없습니다.')
@@ -409,10 +576,13 @@ class Handler(BaseHTTPRequestHandler):
         u=urlparse(self.path)
         try:
             if u.path=='/':return self.output((HERE/'index.html').read_text(),ctype='text/html; charset=utf-8')
-            if u.path=='/fit_view.js':return self.output((HERE/'fit_view.js').read_text(),ctype='text/javascript; charset=utf-8')
+            if u.path in ('/fit_view.js','/operation_view.js'):return self.output((HERE/u.path[1:]).read_text(),ctype='text/javascript; charset=utf-8')
             if u.path=='/api/fit':return self.output(fit_status())
+            if u.path=='/api/shortlist-memo':
+                receipt=ident(parse_qs(u.query)['receipt'][0])
+                return self.output(shortlist_memo(state().get('shortlist',[]),receipt),ctype='text/markdown; charset=utf-8')
             if u.path=='/api/state':
-                fit=fit_status();ex,led=experiments();return self.output({'state':state(),'fit':fit,'fit_gate':fit_gate(fit=fit),'fit_limits':fit_limits(),'overview':overview(),'experiments':ex,'ledger':led,'products':specimens(),'token':TOKEN,'demo':str(DEMO),'stub_allowed':os.environ.get('OPS_ALLOW_STUB')=='1','configs':config_editor.inventory(PROJECT)})
+                fit=fit_status();ex,led=experiments();return self.output({'state':receipt_progress(state(),ex),'readiness':category_readiness(),'fit':fit,'fit_gate':fit_gate(fit=fit),'fit_limits':fit_limits(),'overview':overview(),'experiments':ex,'ledger':led,'products':specimens(),'token':TOKEN,'demo':str(DEMO),'stub_allowed':os.environ.get('OPS_ALLOW_STUB')=='1','configs':config_editor.inventory(PROJECT)})
             if u.path=='/api/config':
                 q=parse_qs(u.query);return self.output(config_editor.get(PROJECT,q['kind'][0],q['name'][0]))
             if u.path=='/api/detail':return self.output(detail(parse_qs(u.query)['name'][0]))
@@ -432,6 +602,7 @@ class Handler(BaseHTTPRequestHandler):
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--port',type=int,default=8765);a=ap.parse_args()
     if not (STATE/'state.json').exists():dump(STATE/'state.json',state())
+    mutate('migrate-t2-pair',{})
     print(f'운영 화면: http://localhost:{a.port} (로컬 역할 시연, 인증 서버 아님)',flush=True)
     ThreadingHTTPServer(('127.0.0.1',a.port),Handler).serve_forever()
 if __name__=='__main__':main()

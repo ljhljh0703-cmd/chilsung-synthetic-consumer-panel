@@ -61,13 +61,12 @@ def fit_status(project, demo):
             status, reason = '판정 불가','정합성 검증이 끝나지 않았습니다.'
         elif data.get('own_verdict') and own != data['own_verdict']:
             status, reason = '판정 불가','계산 불일치'
-        elif data['prereg']['sha256'] != hash_file(prereg) or any(
-            hash_file(project/path) != expected for path,expected in (
-                ('research/fit-questionnaire.md',data['questionnaire_sha256']['A']),
-                ('population/config/adopter.json',data['population']['config_sha256']),
-                ('population/stats/population_cells.csv',data['population']['stats_sha256']))
-            if (project/path).is_file() or path.startswith('research/')):
-            status, reason = '재검증 필요','사전 등록·문항 또는 모집단 설정 판본 변경'
+        elif data['prereg']['sha256'] != hash_file(prereg) or hash_file(project/'research/fit-questionnaire.md') != data['questionnaire_sha256']['A']:
+            status, reason = '재검증 필요','사전 등록 또는 문항 판본 변경'
+        elif any(hash_file(project/path) != data['population'][key] for path,key in (
+                ('population/config/adopter.json','config_sha256'),('population/stats/population_cells.csv','stats_sha256'))
+                if (project/path).is_file()):
+            status, reason = '재검증 필요','모집단 설정 또는 인구 가중 표 판본 변경'
         elif any(c.get('models_returned') and set(c['models_returned']) != {c['model_requested']} for c in combos.values()):
             status, reason = '재검증 필요','실제 모델 판본 변경 또는 불일치'
         return {'status':status,'reason':reason,'data':data,'sha256':hash_file(summary),
@@ -83,7 +82,8 @@ def gate(fit, spec=None, benchmark=None):
     def blocked(stage, reason):
         return {'allowed':False,'stage':stage,'reason':reason,'status':fit['status']}
     if fit['status'] != '통과':
-        return blocked(1,f"모집단 정합성 {fit['status']} · 신제품 가상 실행 막힘. {fit['reason']}")
+        stage=3 if fit['status']=='재검증 필요' and fit['reason'].startswith('모집단') else 1
+        return blocked(stage,f"모집단 정합성 {fit['status']} · 신제품 가상 실행 막힘. {fit['reason']}")
     if spec is None:
         return {'allowed':None,'stage':None,'reason':'실험의 모집단·질문 방식과 재현 기록을 확인하세요.','status':'통과'}
     model = spec.get('requested_model') or next(iter(fit['allowed_models']),None)

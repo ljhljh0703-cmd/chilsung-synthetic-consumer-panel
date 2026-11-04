@@ -25,11 +25,12 @@ const FitView = (() => {
   function fitPage(fit, limits=[], link='') {
     const d=fit.data, intro=`<p>${badge(fit.status)} ${esc(fit.reason)}</p>`;
     if (!d) return card('모집단 정합성',intro+`<p>사전 등록 지문 ${esc(fit.prereg_sha256?.slice(0,12))}</p>`);
+    const fixture=d.test_fixture?'<p>시험용 요약 · 실제 결과 아님</p>':'';
     const modelRows=d.combos.map(c=>[c.id,c.persona_info,c.model_requested,Object.entries(c.models_returned).map(([k,v])=>k+' '+v+'건').join(', '),c.questionnaire,c.paths.api||0,c.paths.cli||0]);
     const fitRows=Object.entries(d.rq1['3']||{}).map(([key,v],i)=>source(key,v,fit.per_source?.['3']?.[i])).join('');
     const rq2=Object.entries(d.rq2).map(([key,v])=>[key,...['1','2','3'].map(c=>n(v.mae_by_combo[c])),n(v.rep_spread_combo3),fit.contribution?.[key]?'기여 있음':'미확인']);
     const h4=d.h4.within_age_table.map(r=>[r.age,r.drink,n(r.estimate?.early.pct),n(r.estimate?.late.pct),n(r.estimate?.diff_pp)]);
-    return card('모집단 정합성',intro+`<p>사전 등록 ${esc(d.prereg.revision)} · 지문 ${esc(d.prereg.sha256.slice(0,12))} · 공개 기록 시각 ${esc(d.prereg.locked_at)}</p>
+    return card('모집단 정합성',intro+fixture+`<p>사전 등록 ${esc(d.prereg.revision)} · 지문 ${esc(d.prereg.sha256.slice(0,12))} · 공개 기록 시각 ${esc(d.prereg.locked_at)}</p>
       <p>표본 ${d.population.n}명 · 난수 ${d.population.seed} · 표본 지문 ${esc(d.population.sample_sha256.slice(0,12))} · ${esc(d.population.weighting)}</p>
       <p>실행 ${esc(d.run.started_at)} → ${esc(d.run.finished_at)}</p>`+
       table(['조합','제공 정보','요청 모델','반환 모델','문항','API','로그인'],modelRows)+(link?`<p><a href="${esc(link)}">등록 보고서 내려받기</a></p>`:''))+
