@@ -1,0 +1,148 @@
+{
+  "state": "exploratory",
+  "affects_fit_verdict": false,
+  "plan_commit": "6d8739516cd09ac62be7c97aa7ae859f9e601d4c",
+  "plan_sha256": "19d070b8e964893529b2dbb4547debf36e0d7c75ee70bec35202bbc47e8d2167",
+  "stage1b": {
+    "A2": {
+      "planned": 30,
+      "excluded": 0,
+      "paired": 30,
+      "status": "선별 조건 미충족",
+      "baseline": {
+        "n": 30,
+        "v2_total": 0.0,
+        "v2_gap": 37.8,
+        "v3_mae": 18.69304347826087,
+        "v3_rho": 0.9341987329938276,
+        "v3_top2": [
+          "맥주",
+          "소주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 23.0,
+        "v1_gap": 46.66666666666667
+      },
+      "draw": {
+        "n": 30,
+        "v2_total": 10.412068059824755,
+        "v2_gap": 27.387931940175243,
+        "v3_mae": 17.002222222222223,
+        "v3_rho": 0.7348988088720496,
+        "v3_top2": [
+          "맥주",
+          "소주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 18.0,
+        "v1_gap": 13.333333333333336
+      },
+      "expected": {
+        "n": 30,
+        "v2_total": 12.084331738096614,
+        "v2_gap": 25.71566826190338,
+        "v3_mae": 17.039647404505384,
+        "v3_rho": 0.9636363636363636,
+        "v3_top2": [
+          "소주",
+          "맥주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 20.42,
+        "v1_gap": 25.73333333333332
+      },
+      "improvement": {
+        "v2_pp": 10.412068059824755,
+        "v3_pp": 1.690821256038646
+      },
+      "route": "api",
+      "generation": 1
+    },
+    "D2": {
+      "planned": 30,
+      "excluded": 2,
+      "paired": 28,
+      "status": "판정 불가",
+      "baseline": {
+        "n": 28,
+        "v2_total": 38.565293570430256,
+        "v2_gap": 0.7652935704302593,
+        "v3_mae": 18.84,
+        "v3_rho": 0.8842048302391149,
+        "v3_top2": [
+          "맥주",
+          "소주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 25.0,
+        "v1_gap": 0.0
+      },
+      "draw": {
+        "n": 28,
+        "v2_total": 38.183088921489116,
+        "v2_gap": 0.38308892148911866,
+        "v3_mae": 13.979999999999999,
+        "v3_rho": 0.8930039428247147,
+        "v3_top2": [
+          "소주",
+          "맥주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 25.0,
+        "v1_gap": 7.142857142857139
+      },
+      "expected": {
+        "n": 28,
+        "v2_total": 33.9236121355255,
+        "v2_gap": 3.876387864474495,
+        "v3_mae": 14.656127320954905,
+        "v3_rho": 0.8909090909090909,
+        "v3_top2": [
+          "소주",
+          "맥주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 22.62,
+        "v1_gap": 8.214285714285708
+      },
+      "route": "api",
+      "generation": 1
+    }
+  },
+  "A_pooled": {
+    "status": "판정 불가",
+    "reason": "1차 A의 주종별 건수 미보존",
+    "v2": {
+      "baseline": 3.083759900691903,
+      "draw": 13.714991119998277,
+      "improvement_pp": 10.631231219306375
+    }
+  },
+  "promoted": [],
+  "stage2": {},
+  "request_cap": 900,
+  "previous_request_count": 136,
+  "round2_request_count": 65,
+  "total_request_count": 201,
+  "request_groups": [
+    {
+      "stage": 1,
+      "arm": "A2",
+      "route": "api",
+      "generation": 1,
+      "status": "returned",
+      "model": "gpt-6.1-terra",
+      "count": 30
+    },
+    {
+      "stage": 1,
+      "arm": "D2",
+      "route": "api",
+      "generation": 1,
+      "status": "returned",
+      "model": "claude-haiku-5-5",
+      "count": 35
+    }
+  ],
+  "stop": null
+}
