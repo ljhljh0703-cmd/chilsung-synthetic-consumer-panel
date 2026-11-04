@@ -1,0 +1,342 @@
+{
+  "state": "exploratory",
+  "affects_fit_verdict": false,
+  "plan_commit": "2ba1df53cc15b9f9df708f47fdebdaf73d000957",
+  "plan_sha256": "e1b99bf4a14845450211d7ffcfc4f1fa2e3baea9b21dfcae57b71a7d36b0f1b9",
+  "assignment_sha256": "32e11c313fbc9c061924c253502934ebfa760a6b5d71db01ec67dbe0e2b1bcd2",
+  "route": "codex_chatgpt_login",
+  "model_settings": {
+    "model_reasoning_effort": "none",
+    "web_search": "disabled",
+    "shell_tool": false,
+    "session_persistence": false,
+    "api_store_false": "unavailable"
+  },
+  "request_by_route": {
+    "terra": 480,
+    "haiku": 240
+  },
+  "request_cap": 900,
+  "request_caps": {
+    "terra": 600,
+    "haiku": 300
+  },
+  "haiku_settings": {
+    "thinking": {
+      "type": "disabled"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "max_tokens": 1024
+  },
+  "request_count": 720,
+  "request_status": {
+    "valid": 720
+  },
+  "returned_models": {
+    "gpt-6.1-terra": 480,
+    "claude-haiku-5-5": 240
+  },
+  "arms": {
+    "neutral-named": {
+      "valid": 240,
+      "attempted": 240,
+      "missing_or_excluded": 0,
+      "counts": {
+        "cass_2019": 98,
+        "hite_2019": 43,
+        "cloud_2019": 20,
+        "terra": 7,
+        "max_2019": 30,
+        "asahi_2019": 32,
+        "tsingtao_2019": 10
+      },
+      "share_pct": {
+        "cass_2019": 40.833333333333336,
+        "hite_2019": 17.916666666666668,
+        "cloud_2019": 8.333333333333334,
+        "terra": 2.9166666666666665,
+        "max_2019": 12.5,
+        "asahi_2019": 13.333333333333334,
+        "tsingtao_2019": 4.166666666666667
+      },
+      "wilson95_pct": {
+        "cass_2019": [
+          34.806691885261856,
+          47.14879664700007
+        ],
+        "hite_2019": [
+          13.582257478833457,
+          23.261952384083237
+        ],
+        "cloud_2019": [
+          5.459148575977612,
+          12.520344752485627
+        ],
+        "terra": [
+          1.4198730672500264,
+          5.896954393913429
+        ],
+        "max_2019": [
+          8.897937456656784,
+          17.28360653896013
+        ],
+        "asahi_2019": [
+          9.605375830035264,
+          18.216578299012383
+        ],
+        "tsingtao_2019": [
+          2.2787422709248215,
+          7.4987003903847365
+        ]
+      },
+      "direction_a": false,
+      "terra_origins": {
+        "카스": 0,
+        "하이트": 0,
+        "하이트진로 기타(맥스 등)": 0,
+        "롯데(클라우드 등)": 0,
+        "아사히": 0,
+        "칭따오": 0,
+        "기타": 7
+      },
+      "habit_matched": 180,
+      "habit_identifiable_denominator": 180,
+      "habit_pct": 100.0,
+      "confirmed_habit_among_all_pct": 75.0
+    },
+    "neutral-blind": {
+      "valid": 240,
+      "attempted": 240,
+      "missing_or_excluded": 0,
+      "counts": {
+        "cass_2019": 100,
+        "hite_2019": 42,
+        "cloud_2019": 17,
+        "terra": 2,
+        "max_2019": 34,
+        "asahi_2019": 31,
+        "tsingtao_2019": 14
+      },
+      "share_pct": {
+        "cass_2019": 41.666666666666664,
+        "hite_2019": 17.5,
+        "cloud_2019": 7.083333333333333,
+        "terra": 0.8333333333333334,
+        "max_2019": 14.166666666666666,
+        "asahi_2019": 12.916666666666666,
+        "tsingtao_2019": 5.833333333333333
+      },
+      "wilson95_pct": {
+        "cass_2019": [
+          35.60860261657872,
+          47.987296049113915
+        ],
+        "hite_2019": [
+          13.21545485103242,
+          22.808549945168906
+        ],
+        "cloud_2019": [
+          4.469193703717767,
+          11.049684424599365
+        ],
+        "terra": [
+          0.22882832869742276,
+          2.986973798889194
+        ],
+        "max_2019": [
+          10.318132533762434,
+          19.14423172871595
+        ],
+        "asahi_2019": [
+          9.250965860659054,
+          17.75078320167322
+        ],
+        "tsingtao_2019": [
+          3.5062436420792222,
+          9.552019286091804
+        ]
+      },
+      "direction_a": false,
+      "terra_origins": {
+        "카스": 0,
+        "하이트": 0,
+        "하이트진로 기타(맥스 등)": 0,
+        "롯데(클라우드 등)": 0,
+        "아사히": 0,
+        "칭따오": 0,
+        "기타": 2
+      },
+      "habit_matched": 180,
+      "habit_identifiable_denominator": 180,
+      "habit_pct": 100.0,
+      "confirmed_habit_among_all_pct": 75.0
+    },
+    "press-named": {
+      "valid": 0,
+      "attempted": 0,
+      "missing_or_excluded": 240,
+      "counts": {
+        "cass_2019": 0,
+        "hite_2019": 0,
+        "cloud_2019": 0,
+        "terra": 0,
+        "max_2019": 0,
+        "asahi_2019": 0,
+        "tsingtao_2019": 0
+      },
+      "share_pct": {
+        "cass_2019": null,
+        "hite_2019": null,
+        "cloud_2019": null,
+        "terra": null,
+        "max_2019": null,
+        "asahi_2019": null,
+        "tsingtao_2019": null
+      },
+      "wilson95_pct": {
+        "cass_2019": null,
+        "hite_2019": null,
+        "cloud_2019": null,
+        "terra": null,
+        "max_2019": null,
+        "asahi_2019": null,
+        "tsingtao_2019": null
+      },
+      "direction_a": null,
+      "terra_origins": {
+        "카스": 0,
+        "하이트": 0,
+        "하이트진로 기타(맥스 등)": 0,
+        "롯데(클라우드 등)": 0,
+        "아사히": 0,
+        "칭따오": 0,
+        "기타": 0
+      },
+      "habit_matched": 0,
+      "habit_identifiable_denominator": 0,
+      "habit_pct": null,
+      "confirmed_habit_among_all_pct": null
+    },
+    "press-blind": {
+      "valid": 0,
+      "attempted": 0,
+      "missing_or_excluded": 240,
+      "counts": {
+        "cass_2019": 0,
+        "hite_2019": 0,
+        "cloud_2019": 0,
+        "terra": 0,
+        "max_2019": 0,
+        "asahi_2019": 0,
+        "tsingtao_2019": 0
+      },
+      "share_pct": {
+        "cass_2019": null,
+        "hite_2019": null,
+        "cloud_2019": null,
+        "terra": null,
+        "max_2019": null,
+        "asahi_2019": null,
+        "tsingtao_2019": null
+      },
+      "wilson95_pct": {
+        "cass_2019": null,
+        "hite_2019": null,
+        "cloud_2019": null,
+        "terra": null,
+        "max_2019": null,
+        "asahi_2019": null,
+        "tsingtao_2019": null
+      },
+      "direction_a": null,
+      "terra_origins": {
+        "카스": 0,
+        "하이트": 0,
+        "하이트진로 기타(맥스 등)": 0,
+        "롯데(클라우드 등)": 0,
+        "아사히": 0,
+        "칭따오": 0,
+        "기타": 0
+      },
+      "habit_matched": 0,
+      "habit_identifiable_denominator": 0,
+      "habit_pct": null,
+      "confirmed_habit_among_all_pct": null
+    },
+    "haiku-neutral-named": {
+      "valid": 240,
+      "attempted": 240,
+      "missing_or_excluded": 0,
+      "counts": {
+        "cass_2019": 106,
+        "hite_2019": 28,
+        "cloud_2019": 19,
+        "terra": 29,
+        "max_2019": 35,
+        "asahi_2019": 15,
+        "tsingtao_2019": 8
+      },
+      "share_pct": {
+        "cass_2019": 44.166666666666664,
+        "hite_2019": 11.666666666666666,
+        "cloud_2019": 7.916666666666667,
+        "terra": 12.083333333333334,
+        "max_2019": 14.583333333333334,
+        "asahi_2019": 6.25,
+        "tsingtao_2019": 3.3333333333333335
+      },
+      "wilson95_pct": {
+        "cass_2019": [
+          38.02501224037211,
+          50.49211682561274
+        ],
+        "hite_2019": [
+          8.196258984100718,
+          16.34487487808546
+        ],
+        "cloud_2019": [
+          5.126524186067317,
+          12.032764075680552
+        ],
+        "terra": [
+          8.54634783498129,
+          16.814991093920252
+        ],
+        "max_2019": [
+          10.676384528381954,
+          19.6061848008118
+        ],
+        "asahi_2019": [
+          3.823811719647034,
+          10.054656275239363
+        ],
+        "tsingtao_2019": [
+          1.6985464257907048,
+          6.438486102088118
+        ]
+      },
+      "direction_a": null,
+      "terra_origins": {
+        "카스": 3,
+        "하이트": 2,
+        "하이트진로 기타(맥스 등)": 0,
+        "롯데(클라우드 등)": 0,
+        "아사히": 0,
+        "칭따오": 0,
+        "기타": 24
+      },
+      "habit_matched": 174,
+      "habit_identifiable_denominator": 180,
+      "habit_pct": 96.66666666666667,
+      "confirmed_habit_among_all_pct": 72.5
+    }
+  },
+  "unexecuted_arms": [
+    "press-named",
+    "press-blind"
+  ],
+  "verdict": "미통과",
+  "stop": null
+}
