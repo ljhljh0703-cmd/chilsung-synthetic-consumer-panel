@@ -1,0 +1,199 @@
+{
+  "state": "exploratory",
+  "affects_fit_verdict": false,
+  "plan_commit": "a32ac9cba8d127e4c3d56e9a3f59feea8db45533",
+  "plan_sha256": "ca25eb71c4dbc1c69f98070447e55345e0a75318e1f249786cd4844f7afcf8ac",
+  "stage1": {
+    "A": {
+      "excluded": 0,
+      "planned": 30,
+      "route": "api",
+      "generation": 1,
+      "status": "선별 조건 미충족",
+      "baseline": {
+        "n": 30,
+        "v2_total": 6.167519801383806,
+        "v2_gap": 31.632480198616193,
+        "v3_mae": 20.432173913043478,
+        "v3_rho": 0.8739695897586162,
+        "v3_top2": [
+          "맥주",
+          "소주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 23.0,
+        "v1_gap": 40.00000000000001
+      },
+      "draw": {
+        "n": 30,
+        "v2_total": 17.0179141801718,
+        "v2_gap": 20.782085819828197,
+        "v3_mae": 18.416363636363634,
+        "v3_rho": 0.8554858623063625,
+        "v3_top2": [
+          "소주",
+          "맥주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 22.0,
+        "v1_gap": -13.333333333333321
+      },
+      "improvement": {
+        "v2_pp": 10.850394378787996,
+        "v3_pp": 2.0158102766798436
+      },
+      "expected": {
+        "n": 30,
+        "v2_total": 14.482459106312188,
+        "v2_gap": 23.31754089368781,
+        "v3_mae": 17.71041162227603,
+        "v3_rho": 0.9515151515151515,
+        "v3_top2": [
+          "맥주",
+          "소주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 20.650000000000002,
+        "v1_gap": 24.266666666666666
+      }
+    },
+    "B": {
+      "excluded": 0,
+      "planned": 30,
+      "route": "api",
+      "generation": 1,
+      "status": "선별 조건 미충족",
+      "baseline": {
+        "n": 30,
+        "v2_total": 6.167519801383806,
+        "v2_gap": 31.632480198616193,
+        "v3_mae": 20.432173913043478,
+        "v3_rho": 0.8739695897586162,
+        "v3_top2": [
+          "맥주",
+          "소주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 23.0
+      },
+      "draw": {
+        "n": 30,
+        "v2_total": 9.80724679736459,
+        "v2_gap": 27.992753202635406,
+        "v3_mae": 19.594814814814814,
+        "v3_rho": 0.8876253645985946,
+        "v3_top2": [
+          "맥주",
+          "소주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 27.0
+      },
+      "improvement": {
+        "v2_pp": 3.639726995980787,
+        "v3_pp": 0.8373590982286636
+      },
+      "expected": null
+    },
+    "C": {
+      "excluded": 0,
+      "planned": 30,
+      "route": "api",
+      "generation": 1,
+      "status": "선별 조건 미충족",
+      "baseline": {
+        "n": 30,
+        "v2_total": 6.167519801383806,
+        "v2_gap": 31.632480198616193,
+        "v3_mae": 20.432173913043478,
+        "v3_rho": 0.8739695897586162,
+        "v3_top2": [
+          "맥주",
+          "소주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 23.0
+      },
+      "draw": {
+        "n": 30,
+        "v2_total": 6.77234106384397,
+        "v2_gap": 31.027658936156026,
+        "v3_mae": 16.519130434782607,
+        "v3_rho": 0.7816309677187628,
+        "v3_top2": [
+          "소주",
+          "맥주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 23.0
+      },
+      "improvement": {
+        "v2_pp": 0.6048212624601668,
+        "v3_pp": 3.913043478260871
+      },
+      "expected": {
+        "n": 30,
+        "v2_total": 15.541868395210875,
+        "v2_gap": 22.25813160478912,
+        "v3_mae": 17.101840148698887,
+        "v3_rho": 0.9030303030303031,
+        "v3_top2": [
+          "맥주",
+          "소주"
+        ],
+        "v3_top_ok": true,
+        "v3_drinker_denominator": 21.520000000000007
+      }
+    },
+    "D": {
+      "excluded": 3,
+      "planned": 30,
+      "route": "api",
+      "generation": 1,
+      "status": "판정 불가"
+    }
+  },
+  "promoted": [],
+  "stage2": {},
+  "request_cap": 900,
+  "request_count": 136,
+  "request_groups": [
+    {
+      "stage": 1,
+      "arm": "A",
+      "route": "api",
+      "generation": 1,
+      "status": "returned",
+      "model": "gpt-6.1-terra",
+      "count": 30
+    },
+    {
+      "stage": 1,
+      "arm": "B",
+      "route": "api",
+      "generation": 1,
+      "status": "returned",
+      "model": "gpt-6.1-terra",
+      "count": 30
+    },
+    {
+      "stage": 1,
+      "arm": "C",
+      "route": "api",
+      "generation": 1,
+      "status": "returned",
+      "model": "gpt-6.1-terra",
+      "count": 30
+    },
+    {
+      "stage": 1,
+      "arm": "D",
+      "route": "api",
+      "generation": 1,
+      "status": "returned",
+      "model": "claude-haiku-5-5",
+      "count": 46
+    }
+  ],
+  "stop": null
+}

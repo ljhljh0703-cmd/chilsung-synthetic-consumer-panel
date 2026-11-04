@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="710" height="320" viewBox="0 0 710 320">
+<title>탐색 1단계 V2·V3 오차 감소</title><rect width="100%" height="100%" fill="#f5f8fa"/>
+<g font-family="sans-serif" fill="#183146"><text x="22" y="31" font-size="20">탐색 1단계 · 기존 대비 오차 감소 (%p)</text>
+<text x="22" y="53" font-size="13">양수 = 기관 통계에 가까워짐 · 파랑 V2 / 초록 V3</text>
+<path d="M355 64v217" stroke="#8094a6"/>
+<text x="22" y="93">A</text>
+<rect x="355.00" y="79" width="27.13" height="13" fill="#27639a"/>
+<text x="387.13" y="90" font-size="12">+10.85</text>
+<rect x="355.00" y="97" width="5.04" height="13" fill="#378065"/>
+<text x="365.04" y="108" font-size="12">+2.02</text>
+<text x="22" y="143">B</text>
+<rect x="355.00" y="129" width="9.10" height="13" fill="#27639a"/>
+<text x="369.10" y="140" font-size="12">+3.64</text>
+<rect x="355.00" y="147" width="2.09" height="13" fill="#378065"/>
+<text x="362.09" y="158" font-size="12">+0.84</text>
+<text x="22" y="193">C</text>
+<rect x="355.00" y="179" width="1.51" height="13" fill="#27639a"/>
+<text x="361.51" y="190" font-size="12">+0.60</text>
+<rect x="355.00" y="197" width="9.78" height="13" fill="#378065"/>
+<text x="369.78" y="208" font-size="12">+3.91</text>
+<text x="22" y="243">D</text>
+<text x="58" y="243">판정 불가</text>
+</g></svg>
