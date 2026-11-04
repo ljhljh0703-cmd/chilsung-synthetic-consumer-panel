@@ -4,7 +4,7 @@
 - 용도는 정량 조사 전 콘셉트 스크리닝입니다.
 - 사전 등록 FIT는 5개 조건을 각 3회, 동일한 합성 표본 300명에게 반복했습니다. 15회, 4,500개 판정 대상 응답 자리입니다.
 - 주 분석의 V1·V2·V3 대표성 기준은 모두 미달했습니다. 주종 순위 상관은 0.96, 평균 절대 차이는 19.10%p였습니다.
-- 운영 도구는 대표성 미달 범주의 신제품 가상 실행을 차단합니다.
+- 운영 시연에서 대표성 미달로 신제품 가상 실행을 차단했습니다. 에이전트가 원인 진단과 선별을 수행했고, 작가가 새 검증을 승인했습니다.
 - 보정 진행 중. 결과는 공개 저장소 explore/에 단계마다 추가합니다.
 - [보정 최종 결과]
 
@@ -37,9 +37,23 @@
 
 ## 구현과 검증 범위
 
-- **구현** · 인구 분포 가중, 모의 응답 및 집계 실행기, 기존 경쟁 세트 재현과 자극물 민감도 점검, 운영 화면 8개, 설정 잠금, 역할별 승인, 감사 기록, 서버 실행 게이트. 공개 웹은 읽기 전용입니다. 가격·용량 비교와 구전 확산 코드도 있으며 실측으로 효과를 검증한 단계는 아닙니다.
-- **설계 단계** · [architecture.md][design]의 에이전트 오케스트레이션과 실측 응답을 사용한 지속 보정. 시연판은 정해진 실행 순서에서 모델을 호출합니다.
-- **미수행** · 같은 문항으로 실제 소비자를 조사한 직접 대조, 출시 후 시장 예측 검증, 판매량·손익 추정.
+- **구현** · 인구 분포 가중, 모의 응답 및 집계 실행기, 기존 경쟁 세트 재현과 자극물 민감도 점검, 운영 화면 8개, 설정 잠금, 역할별 승인, 감사 기록, 서버 실행 게이트. 공개 웹은 읽기 전용입니다.
+- **실증한 운영 과정** · 사람이 기준·실행 범위를 승인하고, 에이전트가 승인된 시험을 실행·집계하며, 운영 서버가 판정에 따라 실행을 제어했습니다. 아래는 이 운영 과정의 공개 근거입니다.
+- **검증 예정 범위** · 같은 문항의 실제 소비자 직접 대조, 출시 후 시장 예측 검증, 가격·용량 비교와 구전 확산의 실측 효과. 판매량·손익 추정은 범위 밖입니다.
+
+### 운영 프로세스 실증
+
+시각은 2026-11-04 한국 시각(KST)의 공개 커밋 시각입니다. 새 검증은 선별에 쓰지 않은 합성 응답자와 새 문항을 사용합니다.
+
+| 단계 | 수행·승인 | 상태 | 공개 커밋 및 시각 |
+|---|---|---|---|
+| 사전 등록 | 작가가 문항과 기준을 확정하고 본 실행을 승인 | 등록 완료 | [750c652][ops-prereg] · 18:20:43 |
+| 대표성 검증 | 에이전트가 설문 실행과 집계 | 미달 판정 기록 | [e512809][ops-fit] · 19:27:12 |
+| 미달 시 차단 | 운영 서버가 시연에서 신제품 가상 실행 거부 | 차단 확인 | [3356763][ops-block] · 19:46:15 |
+| 원인 진단 | 에이전트가 기관 문항 원문과 오차 패턴을 대조 | 진단과 시험 계획 공개 | [48d4b25][ops-diagnosis] · 20:53:59 |
+| 30명 선별 | 작가가 사용할 실행 경로를 승인하고 에이전트가 보정 후보 선별 실행 | 선별 완료 | [9b09f31][ops-screen] · 21:07:38 |
+| 새 표본·새 문항 검증 | 작가가 재설계와 실행 범위를 승인하고 에이전트가 검증 실행 | 계획과 기준값 공개 · 결과 대기 | [da8d842][ops-holdout] · 21:18:31 |
+| 통과 범주만 해제 | 운영 서버는 대표성과 같은 모델·모집단의 경쟁 세트 재현 등 실행 요건을 확인 | 조건부 운영 규칙 · 해제 사례 미확인 | [e512809][ops-rule] · 19:27:12 |
 
 ## 재현 방법
 
@@ -78,4 +92,10 @@ python3 -B -m unittest discover -s ops-console -p test_gate.py
 [t3]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/6c01560106a73ecce5fcd6b6c9544f5b0df5e401/demo/results/T3/report.md
 [t4]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/335676320c687f63c1409e62dcf3354765c21a75/docs/data/T4.md
 [gate]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/047357ad501d970e7783af5d25bd562201585484/ops-console/test_gate.py
-[design]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/750c6524951f00224a5a43df78fde8d53e93f7b5/architecture.md
+[ops-prereg]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/commit/750c6524951f00224a5a43df78fde8d53e93f7b5
+[ops-fit]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/e5128090dd3fd965f2df21468af9eb40bac956fe/results/FIT/registered/report.md
+[ops-block]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/335676320c687f63c1409e62dcf3354765c21a75/docs/data/overview.json
+[ops-diagnosis]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/48d4b258af65bd3a58991564860f1425a78ca6d8/explore/PLAN.md
+[ops-screen]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/9b09f31d969957d4119c2299c74cbb521a4536ef/explore/stage-c1.md
+[ops-holdout]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/da8d8426506f2f8517ef59d0f14f1488f8525945/explore/PLAN.md
+[ops-rule]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/e5128090dd3fd965f2df21468af9eb40bac956fe/ops-console/fit_console.py
