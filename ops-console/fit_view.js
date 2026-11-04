@@ -23,7 +23,8 @@ const FitView = (() => {
         rows.map(([label,v])=>[label,n(v.reference_pct),n(v.pct),interval(v.range_pct),interval(v.ci95_pct),n(v.diff_pp),...(key==='V3'?[rank.indexOf(label)+1]:[])]))}</details>`;
   };
   function fitPage(fit, limits=[], link='') {
-    const d=fit.data, intro=`<p>${badge(fit.status)} ${esc(fit.reason)}</p>`;
+    const d=fit.data, intro=`<p>${badge(fit.status)} ${esc(fit.reason)}</p>`+
+      (fit.warnings||[]).map(w=>`<span class="tag warn">${esc(w)}</span>`).join(' ');
     if (!d) return card('모집단 정합성',intro+`<p>사전 등록 지문 ${esc(fit.prereg_sha256?.slice(0,12))}</p>`);
     const fixture=d.test_fixture?'<p>시험용 요약 · 실제 결과 아님</p>':'';
     const modelRows=d.combos.map(c=>[c.id,c.persona_info,c.model_requested,Object.entries(c.models_returned).map(([k,v])=>k+' '+v+'건').join(', '),c.questionnaire,c.paths.api||0,c.paths.cli||0]);
