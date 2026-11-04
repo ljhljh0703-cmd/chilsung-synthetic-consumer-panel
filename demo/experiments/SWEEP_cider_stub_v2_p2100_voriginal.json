@@ -1,0 +1,13 @@
+{
+  "name": "sweep_cider_stub_v2/p2100_voriginal",
+  "goal": "가격·용량 방향 시연: cider_2021; same-person control, not market validation",
+  "sets_file": "config/sets_sweep_cider_stub_v2_p2100_voriginal.json",
+  "flags": [
+    "--batch",
+    "6",
+    "--workers",
+    "1"
+  ],
+  "n": 6,
+  "pass_rule": "가상 선택 비율·순위의 변화만 보고. 시장 정답 통과 판정 없음."
+}

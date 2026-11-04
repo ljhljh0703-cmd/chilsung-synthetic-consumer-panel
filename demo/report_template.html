@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>신제품 후보 선별</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{--bg:#fff;--surface:#f5f6f8;--line:#e5e8eb;--ink:#191f28;--sub:#4e5968;--mute:#8b95a1;--accent:#e0201b;--good:#1b64da;--bar:#d1d6db}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17171c;--surface:#202027;--line:#2c2c35;--ink:#f2f4f6;--sub:#b0b8c1;--mute:#7e8792;--accent:#ff5a52;--good:#4f8ff7;--bar:#3a3a44}}
+:root[data-theme="dark"]{--bg:#17171c;--surface:#202027;--line:#2c2c35;--ink:#f2f4f6;--sub:#b0b8c1;--mute:#7e8792;--accent:#ff5a52;--good:#4f8ff7;--bar:#3a3a44}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55;word-break:keep-all}
+.wrap{max-width:880px;margin:0 auto;padding:56px 16px 80px}
+.eyebrow{font-size:13px;font-weight:600;color:var(--accent)}
+h1{font-size:30px;line-height:1.3;font-weight:700;margin:10px 0 12px;letter-spacing:-.02em}
+.lead{color:var(--sub);font-size:16px;margin:0 0 32px}
+h2{font-size:20px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em}
+h3{font-size:14px;font-weight:600;color:var(--sub);margin:24px 0 10px}
+.muted{color:var(--mute);font-size:13px}
+section{border-top:1px solid var(--line);padding:40px 0}
+table{width:100%;border-collapse:collapse;font-size:15px;margin-top:14px}
+td,th{padding:12px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;font-weight:600;color:var(--mute)}
+td.num{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+tr.me td{color:var(--ink)} tr.me td:first-child{font-weight:700}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px;background:var(--surface);color:var(--sub)}
+.chip.new{color:var(--accent)}
+.row{display:grid;grid-template-columns:minmax(90px,150px) 1fr 52px;align-items:center;gap:10px;font-size:14px;margin:8px 0}
+.bar{height:10px;border-radius:5px;background:var(--surface);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--bar)}
+.row.me .bar i{background:var(--accent)} .row.me span:first-child{font-weight:700}
+.pct{text-align:right;font-variant-numeric:tabular-nums;color:var(--sub)}
+.card{background:var(--surface);border-radius:14px;padding:16px 18px;margin:14px 0 4px;font-size:14px;color:var(--sub)}
+.card b{color:var(--ink);font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media (max-width:640px){.grid{grid-template-columns:1fr}h1{font-size:25px}}
+.q{padding:12px 0;border-bottom:1px solid var(--line)} .q:last-child{border-bottom:0}
+.q .line{font-size:15px;font-weight:600;margin-bottom:4px}
+.q .who{font-size:12px;color:var(--mute)} .q .why{font-size:13px;color:var(--sub);margin-top:4px}
+details.actual{margin-top:24px;padding:14px 18px;border:1px solid var(--line);border-radius:14px;font-size:14px}
+details.actual summary{cursor:pointer;font-weight:600}
+details.actual p{margin:8px 0 0;color:var(--sub)}
+.note{font-size:13px;color:var(--sub);background:var(--surface);border-radius:12px;padding:14px 16px;margin-top:16px}
+footer{margin-top:48px;font-size:12px;color:var(--mute)} footer a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">AI 페르소나 가상시장 · 출시 전 후보 선별</div>
+  <h1>같은 진열대에 놓고, 출시 전에 먼저 물어봅니다</h1>
+  <p class="lead">통계청 인구 분포로 만든 가상 소비자에게 신제품을 출시 당시 경쟁 제품과 나란히 보여줬습니다. 제품 이름과 브랜드는 가리고, 점수 대신 자기 말로 답하게 한 뒤 그 말을 구매 확률로 바꿨습니다. 결과가 이미 나온 출시작으로 돌려 실제 시장과 같은 방향이 나오는지 확인합니다.</p>
+
+  <section id="trust">
+    <h2>믿을 만한가</h2>
+    <div class="muted">결과가 다른 두 제품을 짝지었을 때, 실제로 더 잘된 쪽을 더 높게 본 비율. 무작위면 50%.</div>
+    <table><thead><tr><th>방법</th><th>짝 맞힘률</th><th>설명</th></tr></thead><tbody id="trustBody"></tbody></table>
+    <div class="note" id="trustNote"></div>
+    <div id="leak"></div>
+  </section>
+
+  <div id="sets"></div>
+
+  <footer>가상 소비자 원본: NVIDIA Nemotron-Personas-Korea (<a href="https://huggingface.co/datasets/nvidia/Nemotron-Personas-Korea">Hugging Face</a>, CC BY 4.0). 개인 정보가 없는 합성 인물입니다. 성·연령대별 월간음주율(질병관리청 지역사회건강조사 2025)로 음주자를 뽑았습니다.</footer>
+</div>
+<script>
+const D = /*__DATA__*/null;
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pct = v => v == null ? "-" : Math.round(v * 1000) / 10 + "%";
+const V = D.validation, M = V.metrics || {}, B = V.baselines || {};
+const rows = [
+  ["가상 소비자 선택만", M.choice_share, "하나만 고르라 했을 때 신제품을 고른 비율"],
+  ["가상 소비자 끌림만", M.top2, "자기 말 답변을 「아마 산다·꼭 산다」 확률로 바꾼 값"],
+  ["입력값 + 가상 소비자", M.index_base, "유통·범주·분위기 입력값에 가상 소비자 시용을 곱한 지수"],
+  ["입력값만 (AI 없음)", B.inputs_only_no_ai, "가상 소비자를 빼고 입력값만 쓴 기준선"],
+  ["「소주·맥주면 흥행」 규칙", B.soju_beer_rule, "단순 규칙 기준선"],
+  ["광고비 증가율만", B.ad_growth_only, "출시 분기 광고비 증가율만 본 기준선"],
+  ["무작위", {pair_acc: 0.5}, ""]
+].filter(r => r[1] && r[1].pair_acc != null);
+document.getElementById("trustBody").innerHTML = rows.map(r => `<tr><td>${r[0]}</td><td class="num">${pct(r[1].pair_acc)}</td><td class="muted">${r[2]}${r[1].perm_p != null ? ` · 우연일 확률 ${pct(r[1].perm_p)}` : ""}</td></tr>`).join("");
+document.getElementById("trustNote").textContent = `역검증 대상 ${V.n_targets}개 제품, 비교 가능한 짝 ${(M.top2 || {}).pairs ?? "-"}개. 사례가 적어 「같은 방향이 나오는지」를 보는 용도이고, 흥망을 맞히는 근거로 쓰지 않습니다.`;
+const L = V.leakage || {}, LA = V.leak_ask || {};
+const leakIds = [...new Set([...Object.keys(L), ...Object.keys(LA)])];
+if (leakIds.length) document.getElementById("leak").innerHTML = `<h3>결과가 새는지 검사</h3><table><thead><tr><th>제품</th><th>이름 가림 끌림</th><th>이름 공개 끌림</th><th>AI에게 결과 직접 질문</th></tr></thead><tbody>${leakIds.map(k => `<tr><td>${esc(k)}</td><td class="num">${pct(L[k]?.hidden_top2)}</td><td class="num">${pct(L[k]?.named_top2)}</td><td>${LA[k] ? esc(LA[k].answer) + (LA[k].contaminated ? " (정답과 같음: 오염 의심)" : "") : "-"}</td></tr>`).join("")}</tbody></table>`;
+
+document.getElementById("sets").innerHTML = D.sets.map(s => {
+  const maxC = Math.max(...s.products.map(p => p.choice), 0.01);
+  const maxA = Math.max(...s.age.map(a => a.top2 || 0), 0.01);
+  const attrs = Object.entries(s.target_attrs).map(([k, v]) => `<div><b>${esc(k)}</b> ${esc(v)}</div>`).join("");
+  const quotes = (arr, key) => arr.map(q => `<div class="q"><div class="line">“${esc(q.line)}”</div><div class="who">${esc(q.who)}</div>${q[key] ? `<div class="why">${key === "pull" ? "끌린 점" : "망설인 점"}: ${esc(q[key])}</div>` : ""}</div>`).join("");
+  const o = s.outcome;
+  return `<section>
+    <h2>${esc(s.target)} <span class="chip new">신제품</span>${s.auxiliary ? ' <span class="chip">참고용</span>' : ""}</h2>
+    <div class="muted">${esc(s.launch)} · ${esc(s.category)} · 이름을 가린 채 경쟁 제품 ${s.products.length - 1}개와 나란히</div>
+    <div class="card">${attrs}</div>
+    <h3>하나만 고른다면</h3>
+    ${s.products.map(p => `<div class="row ${p.target ? "me" : ""}"><span>${esc(p.name)}</span><div class="bar"><i style="width:${p.choice / maxC * 100}%"></i></div><span class="pct">${pct(p.choice)}</span></div>`).join("")}
+    <div class="grid">
+      <div><h3>나이대별 「사 볼 것 같다」 (신제품)</h3>
+        ${s.age.filter(a => a.n).map(a => `<div class="row"><span>${a.band === "70" ? "70대 이상" : a.band + "대"}</span><div class="bar"><i style="width:${(a.top2 || 0) / maxA * 100}%;background:var(--accent)"></i></div><span class="pct">${pct(a.top2)}</span></div>`).join("")}
+        <h3>가장 많이 나온 망설임</h3>
+        ${s.hesitate_top.map(h => `<div class="row" style="grid-template-columns:1fr 52px"><span>${esc(h[0])}</span><span class="pct">${h[1]}명</span></div>`).join("") || '<div class="muted">없음</div>'}
+      </div>
+      <div><h3>끌린 사람들</h3>${quotes(s.pos, "pull")}<h3>지나친 사람들</h3>${quotes(s.neg, "hesitate")}</div>
+    </div>
+    ${o ? `<details class="actual"><summary>실제 시장 결과 보기 · ${esc(o.grade)}</summary><p>${esc(o.speed_basis)}</p><p>2년 뒤: ${esc(o.survival_2y)} · 확실도 ${esc(o.certainty)}</p></details>` : ""}
+  </section>`;
+}).join("");
+</script>
+</body>
+</html>

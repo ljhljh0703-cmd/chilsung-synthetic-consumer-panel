@@ -1,0 +1,19 @@
+{
+  "name": "T4",
+  "goal": "L13: 사람별 카드 순서, 5명 묶음, L6 고정 난수 표본, 기존 제품명 공개와 평소/이번 두 질문. 결함 수리 후 한 번 실행.",
+  "sets_file": "config/sets_known_sym.json",
+  "truth_file": "config/known_truth.json",
+  "n": 150,
+  "primary_metric": "usual",
+  "flags": [
+    "--per-person-order",
+    "--batch",
+    "5",
+    "--familiar-incumbents",
+    "--people",
+    "population/out/sample_beer_2000.json",
+    "--sample-seed",
+    "20261104"
+  ],
+  "pass_rule": "작가 결정 2026-11-04(T2와 같은 기준): usual 기준 기존 진열대 5개 중 꼴찌 일치 4개 이상 + 약한 제품이 낀 짝 맞힘 80% 이상이면 통과. 못 넘으면 포기. T2·T3와 나란히 공개. choice 기준은 보조로 보고."
+}

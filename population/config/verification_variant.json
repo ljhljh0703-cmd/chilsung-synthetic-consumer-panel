@@ -1,0 +1,93 @@
+{
+  "status": "provisional",
+  "gate": "gate_pending",
+  "seed": 20261104,
+  "sample_n": 2000,
+  "stats_file": "stats/population_cells.csv",
+  "ratios": {
+    "innovator": 0.025,
+    "early_adopter": 0.135,
+    "early_majority": 0.34,
+    "late_majority": 0.34,
+    "laggard": 0.16
+  },
+  "ratio_basis": "작가 결정 2026-11-04 14시: 로저스 원비율 고정. 한국 소비자 행동의 검증값 아님.",
+  "sensitivities": {
+    "innovator": {
+      "launch_sensitivity": 0.8,
+      "viral_sensitivity": 0.35,
+      "basis": "근거: 미정; 실행 시연용 가설값"
+    },
+    "early_adopter": {
+      "launch_sensitivity": 0.65,
+      "viral_sensitivity": 0.8,
+      "basis": "근거: 미정; 실행 시연용 가설값"
+    },
+    "early_majority": {
+      "launch_sensitivity": 0.4,
+      "viral_sensitivity": 0.65,
+      "basis": "근거: 미정; 실행 시연용 가설값"
+    },
+    "late_majority": {
+      "launch_sensitivity": 0.25,
+      "viral_sensitivity": 0.4,
+      "basis": "근거: 미정; 실행 시연용 가설값"
+    },
+    "laggard": {
+      "launch_sensitivity": 0.1,
+      "viral_sensitivity": 0.2,
+      "basis": "근거: 미정; 실행 시연용 가설값"
+    }
+  },
+  "keywords_file": "../research/adopter_keywords.json",
+  "keyword_enabled": true,
+  "age_signal_enabled": false,
+  "age_signal_weight": 0.25,
+  "age_tilt": 0.0,
+  "sex_balance": "within_sex",
+  "reaction_mode": "two_axis_channel",
+  "reaction_models": {
+    "launch_by_type": {
+      "innovator": 0.8,
+      "early_adopter": 0.65,
+      "early_majority": 0.4,
+      "late_majority": 0.25,
+      "laggard": 0.1
+    },
+    "single_by_type": {
+      "innovator": 0.8,
+      "early_adopter": 0.65,
+      "early_majority": 0.4,
+      "late_majority": 0.25,
+      "laggard": 0.1
+    },
+    "launch_by_age": {
+      "10": 0.85,
+      "20": 0.85,
+      "30": 0.75,
+      "40": 0.6,
+      "50": 0.45,
+      "60": 0.3,
+      "70": 0.2,
+      "80": 0.15,
+      "90": 0.1
+    },
+    "viral_by_age": {
+      "10": 0.9,
+      "20": 0.9,
+      "30": 0.8,
+      "40": 0.6,
+      "50": 0.4,
+      "60": 0.25,
+      "70": 0.15,
+      "80": 0.1,
+      "90": 0.05
+    },
+    "channel_launch_age_weight": 0.3,
+    "channel_viral_value": 0.6,
+    "age_launch_weight": 0.65,
+    "age_viral_weight": 0.65,
+    "sns_max_age": 39,
+    "basis": "근거: 미정. 작가가 고른 세 구조의 차이를 시연하는 설정값, 계수는 분석자 가설. SNS/지인·TV 경계도 가설이며 실제 사용자를 단정하지 않음."
+  }
+}

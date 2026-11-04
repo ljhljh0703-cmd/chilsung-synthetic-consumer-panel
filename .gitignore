@@ -1,0 +1,16 @@
+.env
+.env.*
+.venv/
+__pycache__/
+*.pyc
+*.parquet
+*.jsonl
+population/raw/
+population/out/
+population/source_manifest.json
+demo/data/
+demo/results/FIT/
+diffusion/out/
+ops-console/state.json
+ops-console/audit.log
+ops-console/test-workspace/

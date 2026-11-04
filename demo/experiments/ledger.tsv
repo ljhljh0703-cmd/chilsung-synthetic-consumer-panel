@@ -1,0 +1,44 @@
+시각	실험	모델	사람수	설정	결과
+2026-11-04T13:29	T0	codex:default	150		이름가림·선택비율=0.667;
+2026-11-04T13:41	T1	codex:default	150	--scene 동네 마트·편의점	이름가림·선택비율=0.556;
+2026-11-04T14:17	T2	codex:default	150		이름가림·선택비율=약한짝0.571/전체0.518;
+2026-11-04T14:49	T2N	codex:default	150	--named	이름공개·선택비율=약한짝0.571/전체0.536;
+2026-11-04T14:54	sweep_cider_stub/p1800_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:54	sweep_cider_stub/p2000_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:54	sweep_cider_stub/p2200_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:54	sweep_cider_stub/p2100_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:54	sweep_cider_stub_v2/p1800_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:54	sweep_cider_stub_v2/p2000_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:54	sweep_cider_stub_v2/p2200_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:54	sweep_cider_stub_v2/p2100_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:56	sweep_cider_cap_fixture/p1800_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:56	sweep_cider_cap_fixture/p2000_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:56	sweep_cider_cap_fixture/p2200_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:56	sweep_cider_cap_fixture/p2100_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:56	sweep_cider_stub_final/p1800_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:56	sweep_cider_stub_final/p2000_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:56	sweep_cider_stub_final/p2200_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:56	sweep_cider_stub_final/p2100_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:57	sweep_cider_cap_1793771872116195000/p1800_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:57	sweep_cider_cap_1793771872116195000/p2000_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:57	sweep_cider_cap_1793771872116195000/p2200_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:57	sweep_cider_cap_1793771872116195000/p2100_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:57	sweep_cider_stub_1793771872116195000/p1800_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:57	sweep_cider_stub_1793771872116195000/p2000_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:57	sweep_cider_stub_1793771872116195000/p2200_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:57	sweep_cider_stub_1793771872116195000/p2100_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T14:58	sweep_cider_authorized/p1800_voriginal	codex:default	6	--batch 6 --workers 1	
+2026-11-04T14:59	sweep_cider_authorized/p2000_voriginal	codex:default	6	--batch 6 --workers 1	
+2026-11-04T14:59	sweep_cider_authorized/p2200_voriginal	codex:default	6	--batch 6 --workers 1	
+2026-11-04T15:00	sweep_cider_authorized/p2100_voriginal	codex:default	6	--batch 6 --workers 1	
+2026-11-04T15:36	T3	codex:default	150	--equal-cards	이름가림·선택비율=약한짝0.429/전체0.429;
+2026-11-04T15:41	T3	codex:default	150	--equal-cards	이름가림·선택비율=약한짝0.429/전체0.429;
+2026-11-04T16:12	sweep_cider_cap_1793776321883581000/p1800_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T16:12	sweep_cider_cap_1793776321883581000/p2000_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T16:12	sweep_cider_cap_1793776321883581000/p2200_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T16:12	sweep_cider_cap_1793776321883581000/p2100_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T16:12	sweep_cider_stub_1793776321883581000/p1800_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T16:12	sweep_cider_stub_1793776321883581000/p2000_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T16:12	sweep_cider_stub_1793776321883581000/p2200_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T16:12	sweep_cider_stub_1793776321883581000/p2100_voriginal	stub:price-sweep	6	--batch 6 --workers 1	
+2026-11-04T17:16	T4	codex:default	150	--per-person-order --batch 5 --familiar-incumbents --people population/out/sample_beer_2000.json --sample-seed 20261104	주판정usual=fail;주usual=약한짝0.786/꼴찌0.4/전체0.786;보조choice=약한짝0.679/꼴찌0.4/전체0.661;

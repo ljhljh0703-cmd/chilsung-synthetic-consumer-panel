@@ -1,0 +1,27 @@
+[
+ {"id": "beer_2019_known", "launch": "2019년 3월", "category": "맥주", "seen_at": "식당·주점이나 동네 마트·편의점", "sample": "drinkers",
+  "product_ids": ["cass_2019", "hite_2019", "cloud_2019"],
+  "override": {"cass_2019": {"컨셉": "오래전부터 판매된 국산 맥주"}},
+  "_note": "신제품 없이 기존 제품만. 카스 카드의 「가장 많이 팔리는」 문구는 정답을 알려 주는 말이라 뺌(override)"},
+ {"id": "beer_2023_known", "launch": "2023년 3월", "category": "맥주", "seen_at": "식당·주점이나 동네 마트·편의점", "sample": "drinkers",
+  "product_ids": ["cass_2023", "terra_2023", "cloud_2023", "filite_2023"],
+  "override": {"cass_2023": {"컨셉": "오래전부터 판매된 국산 맥주"}},
+  "_note": "켈리 출시(2023년 4월) 전 진열대. 카스 카드 순위 문구 뺌"},
+ {"id": "beer_2019_annual_known", "launch": "2019년 하반기", "category": "맥주", "seen_at": "식당·주점이나 동네 마트·편의점", "sample": "drinkers",
+  "product_ids": ["cass_2019", "hite_2019", "terra"],
+  "override": {"cass_2019": {"컨셉": "오래전부터 판매된 국산 맥주"}, "terra": {"컨셉": "올해 봄에 나온 국산 맥주"}},
+  "_note": "2019년 연간. 테라는 출시 몇 달 뒤라 신제품 문구를 바꿈"},
+ {"id": "beer_2023h2_known", "launch": "2023년 하반기", "category": "맥주", "seen_at": "식당·주점이나 동네 마트·편의점", "sample": "drinkers",
+  "product_ids": ["cass_2023", "terra_2023", "asahi_2023", "kelly", "filite_2023"],
+  "override": {"cass_2023": {"컨셉": "오래전부터 판매된 국산 맥주"}, "kelly": {"컨셉": "올해 봄에 나온 국산 맥주"}},
+  "products_inline": [{"id": "asahi_2023", "real_name": "아사히", "maker": "아사히", "attrs": {"종류": "수입 맥주(일본 라거)", "컨셉": "오래전부터 판매된 수입 맥주"}}],
+  "_note": "2023년 3·4분기 합산. 아사히 카드는 최소 정보만"},
+ {"id": "soda_2023_known", "launch": "2023년", "category": "탄산", "seen_at": "동네 편의점·마트", "sample": "adults",
+  "product_ids": ["coke_2023", "cider_2021", "pepsi_2023", "milkis_2023"],
+  "override": {"cider_2021": {"컨셉": "오래전부터 판매된 사이다"}},
+  "products_inline": [
+   {"id": "coke_2023", "real_name": "코카콜라", "maker": "코카콜라", "attrs": {"종류": "콜라(탄산음료)", "컨셉": "오래전부터 판매된 콜라"}},
+   {"id": "pepsi_2023", "real_name": "펩시", "maker": "롯데칠성(펩시 브랜드)", "attrs": {"종류": "콜라(탄산음료)", "컨셉": "오래전부터 판매된 콜라"}},
+   {"id": "milkis_2023", "real_name": "밀키스", "maker": "롯데칠성", "attrs": {"종류": "우유맛 탄산음료", "컨셉": "오래전부터 판매된 탄산음료"}}],
+  "_note": "탄산 진열대. 칠성사이다 카드의 「가장 많이 팔리는」 문구 뺌. 이름 가리면 콜라 두 개가 같은 카드가 됨(브랜드 힘 측정용)"}
+]

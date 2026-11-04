@@ -1,0 +1,10 @@
+{
+  "_rule": "6개월 등급은 사례 조사 전에 고정한 기준(부진: 6개월 안 단종·채널 전환·판매 부진 보도 / 흥행: 6개월 안 누적 판매가 품목 연간 물량의 1% 이상 / 그 외 유지). speed 는 보조 지표로, 출시 180일에 가장 가까운 시점의 누적 판매를 품목 연간 물량 대비 비율로 바꿔 경과일로 나눈 값(%p/일). 이 규칙은 시뮬레이션 실행 전에 적었다. simulate.py 는 이 파일을 읽지 않는다.",
+  "terra":       {"grade": "흥행", "category": "맥주", "speed": 0.0191, "speed_basis": "101일 1억139만 병(330ml), 2018 맥주 출고량 대비 1.93%", "survival_2y": "생존", "certainty": "높음"},
+  "jinro":       {"grade": "유지", "category": "소주", "speed": 0.0183, "speed_basis": "215일 1억53만 병(360ml), 2018 소주 출고량 대비 3.94%. 6개월 안 수치가 72일(0.43%)뿐이라 기준상 유지", "survival_2y": "생존", "certainty": "중간"},
+  "saero":       {"grade": "흥행", "category": "소주", "speed": 0.0208, "speed_basis": "약 210일 1억 병(360ml 추정), 2021 소주 출고량 대비 4.36%", "survival_2y": "생존", "certainty": "높음"},
+  "kelly":       {"grade": "흥행", "category": "맥주", "speed": 0.0196, "speed_basis": "99일 1억 병(330ml), 2022 맥주 출고량 대비 1.94%", "survival_2y": "생존", "certainty": "높음"},
+  "krush":       {"grade": "부진", "category": "맥주", "speed": null, "speed_basis": "판매 수치 없음. 3개월 만에 유흥 전용에서 가정용으로 전략 변경", "survival_2y": "생존(29개월 차 클라우드로 흡수)", "certainty": "높음"},
+  "cider_zero":  {"grade": "흥행", "category": "탄산", "speed": 0.0062, "speed_basis": "약 225일 매출 280억(닐슨), 2020 탄산 판매액 대비 1.39%. 금액 기준이라 주류와 단위가 다름", "survival_2y": "생존", "certainty": "중간"},
+  "cloud_light": {"grade": "유지", "category": "맥주", "speed": null, "speed_basis": "판매 수치 없음", "survival_2y": "단종(25개월 차)", "certainty": "낮음", "auxiliary": true}
+}

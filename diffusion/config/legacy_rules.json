@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "seed": 20261104,
+  "n": 2000,
+  "rounds": 8,
+  "mode": "rules",
+  "sample_files": ["demo/data/drinkers.json", "demo/data/adults.json"],
+  "sample_scope": "기존 음주자 1500명과 성인 1000명 합성 표본의 합집합. 모집단 대표 표본 아님.",
+  "stage1_file": "demo/results/terra_2019.jsonl",
+  "product_id": "terra",
+  "stage1_rep": 0,
+  "network": {
+    "mean_friends": 12,
+    "candidate_pool": 64,
+    "base": 1.0,
+    "same_province": 3.0,
+    "age_similarity": 2.0,
+    "age_scale": 10.0,
+    "hobby_similarity": 4.0,
+    "basis": "미정. 나이·지역·취미 유사성에 따른 연결을 시험하는 시연 가정"
+  },
+  "population": {
+    "use_input_traits": true,
+    "ratios": {"innovator": 0.025, "early_adopter": 0.135, "early_majority": 0.34, "late_majority": 0.34, "laggard": 0.16},
+    "signal": {"fields": ["persona", "culinary_persona", "hobbies_and_interests", "occupation"], "keywords": ["새로운", "신제품", "트렌드", "유행", "SNS", "인스타", "디지털", "탐험", "실험"], "keyword_points": 1.0, "age_weight": 0.5},
+    "types": {
+      "innovator": {"launch_sensitivity": 0.90, "viral_sensitivity": 0.70, "basis": "미정. 시연 가정"},
+      "early_adopter": {"launch_sensitivity": 0.75, "viral_sensitivity": 0.85, "basis": "미정. 시연 가정"},
+      "early_majority": {"launch_sensitivity": 0.50, "viral_sensitivity": 0.65, "basis": "미정. 시연 가정"},
+      "late_majority": {"launch_sensitivity": 0.30, "viral_sensitivity": 0.40, "basis": "미정. 시연 가정"},
+      "laggard": {"launch_sensitivity": 0.15, "viral_sensitivity": 0.20, "basis": "미정. 시연 가정"}
+    },
+    "basis": "로저스 원비율을 시연용 설정으로 사용. 한국 소비자 유형으로 검증되지 않음. 문장 신호와 나이 순위는 분석자 가정"
+  },
+  "behavior": {
+    "post_probability": 0.25,
+    "view_probability": 0.60,
+    "purchase_multiplier": 0.28,
+    "launch_influence": 0.25,
+    "repost_multiplier": 0.18,
+    "repeat_probability": 0.12,
+    "max_exposures_per_week": 5,
+    "basis": "미정. 모든 확률은 검증되지 않은 시연 가정, 판매량 예측에 사용 불가"
+  },
+  "llm": {
+    "max_people_total": 24,
+    "max_people_per_round": 4,
+    "max_calls_total": 24,
+    "timeout_seconds": 30,
+    "basis": "사용량 상한. 표본 일부만 언어모델, 나머지는 규칙. 실패 시 회차 전체 규칙 대체"
+  }
+}

@@ -1,0 +1,6 @@
+{"name": "새_실험_이름", "goal": "무엇을 확인하려는가 한 줄",
+ "sets_file": "config/sets_known.json 또는 ingest.py 로 만든 config/sets_<이름>.json",
+ "truth_file": "config/known_truth.json 또는 config/truth_<이름>.json (정답이 없으면 빈칸)",
+ "flags": ["--scene", "동네 마트·편의점", "--equal-cards", "--ask-qty", "--named", "--no-new-hint", "--batch", "1"],
+ "n": 150,
+ "pass_rule": "결과 보기 전에 적는다"}

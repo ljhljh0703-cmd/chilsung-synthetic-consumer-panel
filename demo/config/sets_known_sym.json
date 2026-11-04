@@ -1,0 +1,720 @@
+[
+ {
+  "id": "beer_2019_known",
+  "launch": "2019년 3월",
+  "category": "맥주",
+  "seen_at": "식당·주점이나 동네 마트·편의점",
+  "sample": "drinkers",
+  "product_ids": [
+   "cass_2019",
+   "hite_2019",
+   "cloud_2019"
+  ],
+  "products_inline": [
+   {
+    "id": "cass_2019",
+    "real_name": "카스 후레쉬",
+    "maker": "오비맥주",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "4.5도",
+     "용량": "500ml 병",
+     "맛": "미세 필터로 효모를 거른 비열처리 라거",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "500ml 병 출고가 1,147원",
+     "포장": "갈색 병, 파란 라벨"
+    },
+    "_src": {
+     "종류": [
+      "https://www.mt.co.kr/living/2025/05/31/2025053107104258123"
+     ],
+     "도수": [
+      "https://www.mt.co.kr/living/2025/05/31/2025053107104258123"
+     ],
+     "용량": [
+      "https://www.sateconomy.co.kr/news/view/179589716356437"
+     ],
+     "맛": [
+      "https://www.asiae.co.kr/en/article/2024062516023667289",
+      "https://newstomato.com/ReadNews.aspx?no=755184"
+     ],
+     "컨셉": [
+      "https://www.dailian.co.kr/news/view/590898/"
+     ],
+     "가격": [
+      "https://www.sateconomy.co.kr/news/view/179589716356437"
+     ],
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   },
+   {
+    "id": "hite_2019",
+    "real_name": "하이트",
+    "maker": "하이트진로",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "4.5도",
+     "용량": "500ml 병",
+     "맛": "숙성부터 생산까지 영하 온도로 만든 페일 라거",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "500ml 병 출고가 1,147원",
+     "포장": "갈색 병, 흰·파란 라벨"
+    },
+    "_src": {
+     "종류": [
+      "https://www.etoday.co.kr/news/view/1508486"
+     ],
+     "도수": [
+      "https://www.etoday.co.kr/news/view/1508486"
+     ],
+     "용량": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "맛": [
+      "https://www.etoday.co.kr/news/view/1508486"
+     ],
+     "컨셉": [
+      "https://www.ajunews.com/view/20240515131941743"
+     ],
+     "가격": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   },
+   {
+    "id": "cloud_2019",
+    "real_name": "클라우드",
+    "maker": "롯데주류",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "5도",
+     "용량": "500ml 병",
+     "가격": "500ml 병 출고가 1,250원",
+     "맛": "발효 원액에 물을 타지 않는 공법, 유럽산 홉",
+     "컨셉": "2014년 4월 출시",
+     "포장": "갈색 병, 금색 라벨"
+    },
+    "_src": {
+     "종류": [
+      "https://biz.newdaily.co.kr/site/data/html/2016/05/30/2016053010016.html"
+     ],
+     "도수": [
+      "https://biz.newdaily.co.kr/site/data/html/2016/05/30/2016053010016.html"
+     ],
+     "용량": [
+      "https://news.bizwatch.co.kr/article/consumer/2019/05/23/0034",
+      "https://dealsite.co.kr/articles/55606"
+     ],
+     "가격": [
+      "https://news.bizwatch.co.kr/article/consumer/2019/05/23/0034",
+      "https://dealsite.co.kr/articles/55606"
+     ],
+     "맛": [
+      "https://biz.newdaily.co.kr/site/data/html/2016/05/30/2016053010016.html"
+     ],
+     "컨셉": [
+      "https://biz.newdaily.co.kr/site/data/html/2016/05/30/2016053010016.html"
+     ],
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   }
+  ],
+  "_note": "같은 칸 대칭 카드. 가격은 진열대 시점(2019년 3월) 500ml 병 출고가 | 2026-11-04 16시 40분 작가 지시로 빠진 가격·포장 칸을 채움. 확인 못 한 값은 _src에 「추정」 표시",
+  "_dropped": {}
+ },
+ {
+  "id": "beer_2023_known",
+  "launch": "2023년 3월",
+  "category": "맥주",
+  "seen_at": "식당·주점이나 동네 마트·편의점",
+  "sample": "drinkers",
+  "product_ids": [
+   "cass_2023",
+   "terra_2023",
+   "cloud_2023",
+   "filite_2023"
+  ],
+  "products_inline": [
+   {
+    "id": "cass_2023",
+    "real_name": "카스 프레시",
+    "maker": "오비맥주",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "4.5도",
+     "용량": "500ml 캔",
+     "맛": "정제 홉 사용, 0도에서 3일 저온 숙성",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "편의점 500ml 캔 2,800원",
+     "포장": "흰·파란 캔"
+    },
+    "_src": {
+     "종류": [
+      "https://www.mt.co.kr/living/2025/05/31/2025053107104258123"
+     ],
+     "도수": [
+      "https://www.mt.co.kr/living/2025/05/31/2025053107104258123"
+     ],
+     "용량": [
+      "https://news.tf.co.kr/read/economy/1766110.htm"
+     ],
+     "맛": [
+      "https://www.inews24.com/view/1349424"
+     ],
+     "컨셉": [
+      "https://www.dailian.co.kr/news/view/590898/"
+     ],
+     "가격": "https://v.daum.net/v/20230223075002719 (비즈워치 2023.02.23: 서울 편의점 카스·테라 500ml 캔 2,800원)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   },
+   {
+    "id": "terra_2023",
+    "real_name": "테라",
+    "maker": "하이트진로",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "4.6도",
+     "용량": "500ml 캔",
+     "맛": "호주산 맥아 100%, 발효 때 생긴 탄산만 담음",
+     "컨셉": "2019년 3월 출시",
+     "가격": "편의점 500ml 캔 2,800원",
+     "포장": "초록색 캔"
+    },
+    "_src": {
+     "종류": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "도수": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "용량": [
+      "https://news.bizwatch.co.kr/article/consumer/2021/07/14/0007"
+     ],
+     "맛": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "컨셉": [
+      "https://newstomato.com/ReadNews.aspx?no=881857",
+      "https://www.ajunews.com/view/20240515131941743"
+     ],
+     "가격": "https://v.daum.net/v/20230223075002719 (비즈워치 2023.02.23: 서울 편의점 카스·테라 500ml 캔 2,800원)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   },
+   {
+    "id": "cloud_2023",
+    "real_name": "클라우드",
+    "maker": "롯데칠성음료",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "5도",
+     "용량": "500ml 캔",
+     "맛": "맥아 100%, 발효 원액에 물을 타지 않는 공법",
+     "컨셉": "2014년 4월 출시",
+     "가격": "편의점 500ml 캔 3,000원",
+     "포장": "금색 캔"
+    },
+    "_src": {
+     "종류": [
+      "https://www.asiae.co.kr/en/article/2021062414250814036"
+     ],
+     "도수": [
+      "https://biz.newdaily.co.kr/site/data/html/2016/05/30/2016053010016.html"
+     ],
+     "용량": [
+      "https://www.inews24.com/view/1232939"
+     ],
+     "맛": [
+      "https://www.asiae.co.kr/en/article/2021062414250814036"
+     ],
+     "컨셉": [
+      "https://biz.newdaily.co.kr/site/data/html/2016/05/30/2016053010016.html"
+     ],
+     "가격": "추정: 같은 기준의 출처를 확인할 수 없어 당시 표준 가격으로 넣음. 정확한 데이터가 있으면 대체 (올몰트 맥주, 2019 출고가가 라거보다 약 9% 높았던 점 반영)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   },
+   {
+    "id": "filite_2023",
+    "real_name": "필라이트",
+    "maker": "하이트진로",
+    "attrs": {
+     "종류": "발포주(맥주맛 기타주류)",
+     "도수": "4.5도",
+     "용량": "500ml 캔",
+     "맛": "아로마 홉 100%, 맥아와 국산 보리 사용",
+     "컨셉": "2017년 4월 출시",
+     "가격": "편의점 500ml 캔 1,800원",
+     "포장": "연두·초록 캔"
+    },
+    "_src": {
+     "종류": [
+      "https://biz.newdaily.co.kr/site/data/html/2017/04/21/2017042110057.html"
+     ],
+     "도수": [
+      "https://biz.newdaily.co.kr/site/data/html/2017/04/21/2017042110057.html"
+     ],
+     "용량": [
+      "https://biz.newdaily.co.kr/site/data/html/2017/04/21/2017042110057.html"
+     ],
+     "맛": [
+      "https://biz.newdaily.co.kr/site/data/html/2017/04/21/2017042110057.html"
+     ],
+     "컨셉": [
+      "https://biz.newdaily.co.kr/site/data/html/2017/04/21/2017042110057.html",
+      "https://www.ajunews.com/view/20240515131941743"
+     ],
+     "가격": "추정: 같은 기준의 출처를 확인할 수 없어 당시 표준 가격으로 넣음. 정확한 데이터가 있으면 대체 (발포주, 국산 맥주보다 약 1천 원 낮은 가격대)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   }
+  ],
+  "_note": "같은 칸 대칭 카드. 필라이트에 병이 없어 용량은 500ml 캔으로 통일 | 2026-11-04 16시 40분 작가 지시로 빠진 가격·포장 칸을 채움. 확인 못 한 값은 _src에 「추정」 표시",
+  "_dropped": {}
+ },
+ {
+  "id": "beer_2019_annual_known",
+  "launch": "2019년 하반기",
+  "category": "맥주",
+  "seen_at": "식당·주점이나 동네 마트·편의점",
+  "sample": "drinkers",
+  "product_ids": [
+   "cass_2019",
+   "hite_2019",
+   "terra"
+  ],
+  "products_inline": [
+   {
+    "id": "cass_2019",
+    "real_name": "카스 후레쉬",
+    "maker": "오비맥주",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "4.5도",
+     "용량": "500ml 병",
+     "맛": "미세 필터로 효모를 거른 비열처리 라거",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "500ml 병 출고가 1,147원",
+     "포장": "갈색 병, 파란 라벨"
+    },
+    "_src": {
+     "종류": [
+      "https://www.mt.co.kr/living/2025/05/31/2025053107104258123"
+     ],
+     "도수": [
+      "https://www.mt.co.kr/living/2025/05/31/2025053107104258123"
+     ],
+     "용량": [
+      "https://www.sateconomy.co.kr/news/view/179589716356437"
+     ],
+     "맛": [
+      "https://www.asiae.co.kr/en/article/2024062516023667289",
+      "https://newstomato.com/ReadNews.aspx?no=755184"
+     ],
+     "컨셉": [
+      "https://www.dailian.co.kr/news/view/590898/"
+     ],
+     "가격": [
+      "https://news.tf.co.kr/read/economy/1766110.htm"
+     ],
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   },
+   {
+    "id": "hite_2019",
+    "real_name": "하이트",
+    "maker": "하이트진로",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "4.5도",
+     "용량": "500ml 병",
+     "맛": "숙성부터 생산까지 영하 온도로 만든 페일 라거",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "500ml 병 출고가 1,147원",
+     "포장": "갈색 병, 흰·파란 라벨"
+    },
+    "_src": {
+     "종류": [
+      "https://www.etoday.co.kr/news/view/1508486"
+     ],
+     "도수": [
+      "https://www.etoday.co.kr/news/view/1508486"
+     ],
+     "용량": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "맛": [
+      "https://www.etoday.co.kr/news/view/1508486"
+     ],
+     "컨셉": [
+      "https://www.ajunews.com/view/20240515131941743"
+     ],
+     "가격": [
+      "https://newstomato.com/ReadNews.aspx?no=881857",
+      "https://www.inews24.com/view/1361898"
+     ],
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   },
+   {
+    "id": "terra",
+    "real_name": "테라",
+    "maker": "하이트진로",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "4.6도",
+     "용량": "500ml 병",
+     "가격": "500ml 병 출고가 1,147원",
+     "맛": "호주산 맥아 100%, 발효 때 생긴 탄산만 담음",
+     "컨셉": "올해 3월 출시",
+     "포장": "초록색 병"
+    },
+    "_src": {
+     "종류": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "도수": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "용량": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "가격": [
+      "https://newstomato.com/ReadNews.aspx?no=881857",
+      "https://www.inews24.com/view/1361898"
+     ],
+     "맛": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "컨셉": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체 (테라 초록 병은 출시 보도에 나옴)"
+    }
+   }
+  ],
+  "_note": "같은 칸 대칭 카드. 가격은 2019년 10월 21일 이후 500ml 병 출고가 | 2026-11-04 16시 40분 작가 지시로 빠진 가격·포장 칸을 채움. 확인 못 한 값은 _src에 「추정」 표시",
+  "_dropped": {}
+ },
+ {
+  "id": "beer_2023h2_known",
+  "launch": "2023년 하반기",
+  "category": "맥주",
+  "seen_at": "식당·주점이나 동네 마트·편의점",
+  "sample": "drinkers",
+  "product_ids": [
+   "cass_2023",
+   "terra_2023",
+   "asahi_2023",
+   "kelly",
+   "filite_2023"
+  ],
+  "products_inline": [
+   {
+    "id": "cass_2023",
+    "real_name": "카스 프레시",
+    "maker": "오비맥주",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "4.5도",
+     "용량": "500ml 캔",
+     "맛": "정제 홉 사용, 0도에서 3일 저온 숙성",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "편의점 500ml 캔 2,800원",
+     "포장": "흰·파란 캔"
+    },
+    "_src": {
+     "종류": [
+      "https://www.mt.co.kr/living/2025/05/31/2025053107104258123"
+     ],
+     "도수": [
+      "https://www.mt.co.kr/living/2025/05/31/2025053107104258123"
+     ],
+     "용량": [
+      "https://news.tf.co.kr/read/economy/1766110.htm"
+     ],
+     "맛": [
+      "https://www.inews24.com/view/1349424"
+     ],
+     "컨셉": [
+      "https://www.dailian.co.kr/news/view/590898/"
+     ],
+     "가격": "https://v.daum.net/v/20230223075002719 (비즈워치 2023.02.23: 서울 편의점 카스·테라 500ml 캔 2,800원)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   },
+   {
+    "id": "terra_2023",
+    "real_name": "테라",
+    "maker": "하이트진로",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "4.6도",
+     "용량": "500ml 캔",
+     "맛": "호주산 맥아 100%, 발효 때 생긴 탄산만 담음",
+     "컨셉": "2019년 3월 출시",
+     "가격": "편의점 500ml 캔 2,800원",
+     "포장": "초록색 캔"
+    },
+    "_src": {
+     "종류": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "도수": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "용량": [
+      "https://news.bizwatch.co.kr/article/consumer/2021/07/14/0007"
+     ],
+     "맛": [
+      "https://newstomato.com/ReadNews.aspx?no=881857"
+     ],
+     "컨셉": [
+      "https://newstomato.com/ReadNews.aspx?no=881857",
+      "https://www.ajunews.com/view/20240515131941743"
+     ],
+     "가격": "https://v.daum.net/v/20230223075002719 (비즈워치 2023.02.23: 서울 편의점 카스·테라 500ml 캔 2,800원)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   },
+   {
+    "id": "asahi_2023",
+    "real_name": "아사히 수퍼드라이",
+    "maker": "아사히맥주",
+    "attrs": {
+     "종류": "수입 맥주(일본)",
+     "도수": "5도",
+     "용량": "500ml 캔",
+     "맛": "일본식 드라이(가라쿠치) 맛 생맥주",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "편의점 500ml 캔 4,500원",
+     "포장": "은색 캔"
+    },
+    "_src": {
+     "종류": [
+      "https://www.asahibeer.co.jp/superdry/"
+     ],
+     "도수": [
+      "https://www.asahibeer.co.jp/superdry/"
+     ],
+     "용량": [
+      "https://www.wikitree.co.kr/articles/1028175"
+     ],
+     "맛": [
+      "https://www.asahibeer.co.jp/superdry/"
+     ],
+     "컨셉": [
+      "https://www.asahigroup-holdings.com/en/newsroom/detail/20230424-0201.html",
+      "https://www.asahibeer.co.jp/superdry/"
+     ],
+     "가격": "추정: 같은 기준의 출처를 확인할 수 없어 당시 표준 가격으로 넣음. 정확한 데이터가 있으면 대체 (수입 맥주 낱개 정상가 기준, 묶음 행사가는 제외)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   },
+   {
+    "id": "kelly",
+    "real_name": "켈리",
+    "maker": "하이트진로",
+    "attrs": {
+     "종류": "국산 맥주",
+     "도수": "4.5도",
+     "용량": "500ml 캔",
+     "맛": "덴마크산 맥아 100%, 두 번 숙성",
+     "컨셉": "올해 4월 출시",
+     "가격": "편의점 500ml 캔 2,800원",
+     "포장": "호박색 캔"
+    },
+    "_src": {
+     "종류": [
+      "https://www.etoday.co.kr/news/view/2235658"
+     ],
+     "도수": [
+      "https://www.etoday.co.kr/news/view/2235658"
+     ],
+     "용량": [
+      "https://file.alphasquare.co.kr/media/pdfs/company-ir/20230424하이트진로_당사_2022년_경영_실적_및_현황.pdf"
+     ],
+     "맛": [
+      "https://www.etoday.co.kr/news/view/2235658"
+     ],
+     "컨셉": [
+      "https://www.etoday.co.kr/news/view/2235658"
+     ],
+     "가격": "추정: 같은 기준의 출처를 확인할 수 없어 당시 표준 가격으로 넣음. 정확한 데이터가 있으면 대체 (출시 시 기존 국산 맥주와 같은 가격이라는 회사 발표)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체 (호박색 병은 출시 보도에 나옴)"
+    }
+   },
+   {
+    "id": "filite_2023",
+    "real_name": "필라이트",
+    "maker": "하이트진로",
+    "attrs": {
+     "종류": "발포주(맥주맛 기타주류)",
+     "도수": "4.5도",
+     "용량": "500ml 캔",
+     "맛": "아로마 홉 100%, 맥아와 국산 보리 사용",
+     "컨셉": "2017년 4월 출시",
+     "가격": "편의점 500ml 캔 1,800원",
+     "포장": "연두·초록 캔"
+    },
+    "_src": {
+     "종류": [
+      "https://biz.newdaily.co.kr/site/data/html/2017/04/21/2017042110057.html"
+     ],
+     "도수": [
+      "https://biz.newdaily.co.kr/site/data/html/2017/04/21/2017042110057.html"
+     ],
+     "용량": [
+      "https://biz.newdaily.co.kr/site/data/html/2017/04/21/2017042110057.html"
+     ],
+     "맛": [
+      "https://biz.newdaily.co.kr/site/data/html/2017/04/21/2017042110057.html"
+     ],
+     "컨셉": [
+      "https://biz.newdaily.co.kr/site/data/html/2017/04/21/2017042110057.html",
+      "https://www.ajunews.com/view/20240515131941743"
+     ],
+     "가격": "추정: 같은 기준의 출처를 확인할 수 없어 당시 표준 가격으로 넣음. 정확한 데이터가 있으면 대체 (발포주, 국산 맥주보다 약 1천 원 낮은 가격대)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체"
+    }
+   }
+  ],
+  "_note": "같은 칸 대칭 카드. 용량은 500ml 캔으로 통일 | 2026-11-04 16시 40분 작가 지시로 빠진 가격·포장 칸을 채움. 확인 못 한 값은 _src에 「추정」 표시",
+  "_dropped": {}
+ },
+ {
+  "id": "soda_2023_known",
+  "launch": "2023년",
+  "category": "탄산",
+  "seen_at": "동네 편의점·마트",
+  "sample": "adults",
+  "product_ids": [
+   "coke_2023",
+   "cider_2021",
+   "pepsi_2023",
+   "milkis_2023"
+  ],
+  "products_inline": [
+   {
+    "id": "coke_2023",
+    "real_name": "코카콜라",
+    "maker": "코카콜라",
+    "attrs": {
+     "종류": "콜라(탄산음료)",
+     "용량": "350ml 캔",
+     "맛": "톡 쏘는 맛과 청량감의 콜라",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "편의점 350ml 캔 2,000원",
+     "포장": "빨간 캔",
+     "도수": "무알코올"
+    },
+    "_src": {
+     "종류": [
+      "https://www.coca-cola.com/kr/ko/brands/coca-cola"
+     ],
+     "용량": "https://economist.co.kr/article/view/ecn202212230005 (이코노미스트 2022.12.23: 2023.1.1부터 편의점 코카콜라 350mL 캔 2,000원, 펩시 355mL 캔 1,900원)",
+     "맛": [
+      "https://www.coca-cola.com/kr/ko/offerings/brand-story/our-billion-dollar-brands"
+     ],
+     "컨셉": [
+      "https://www.coca-cola.com/kr/ko/about-us/coca-cola-korea"
+     ],
+     "가격": "https://economist.co.kr/article/view/ecn202212230005 (이코노미스트 2022.12.23: 2023.1.1부터 편의점 코카콜라 350mL 캔 2,000원, 펩시 355mL 캔 1,900원)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체",
+     "도수": "탄산음료(무알코올)"
+    }
+   },
+   {
+    "id": "cider_2021",
+    "real_name": "칠성사이다",
+    "maker": "롯데칠성음료",
+    "attrs": {
+     "종류": "사이다(탄산음료)",
+     "용량": "355ml 캔",
+     "맛": "풍부한 탄산에 천연 레몬라임향",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "편의점 355ml 캔 1,900원",
+     "포장": "초록 캔",
+     "도수": "무알코올"
+    },
+    "_src": {
+     "종류": [
+      "https://news.bizwatch.co.kr/article/consumer/2023/11/30/0018"
+     ],
+     "용량": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체",
+     "맛": [
+      "https://news.bizwatch.co.kr/article/consumer/2023/11/30/0018"
+     ],
+     "컨셉": [
+      "https://news.bizwatch.co.kr/article/consumer/2023/11/30/0018"
+     ],
+     "가격": "추정: 같은 기준의 출처를 확인할 수 없어 당시 표준 가격으로 넣음. 정확한 데이터가 있으면 대체 (2023.1 코카콜라 인상 때 칠성사이다는 동결, 펩시와 같은 가격대로 추정)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체",
+     "도수": "탄산음료(무알코올)"
+    }
+   },
+   {
+    "id": "pepsi_2023",
+    "real_name": "펩시콜라",
+    "maker": "롯데칠성음료(펩시 브랜드)",
+    "attrs": {
+     "종류": "콜라(탄산음료)",
+     "용량": "355ml 캔",
+     "맛": "짜릿함과 상쾌함의 콜라",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "편의점 355ml 캔 1,900원",
+     "포장": "파란 캔",
+     "도수": "무알코올"
+    },
+    "_src": {
+     "종류": [
+      "https://newstomato.com/ReadNews.aspx?no=1133280"
+     ],
+     "용량": "https://economist.co.kr/article/view/ecn202212230005 (이코노미스트 2022.12.23: 2023.1.1부터 편의점 코카콜라 350mL 캔 2,000원, 펩시 355mL 캔 1,900원)",
+     "맛": [
+      "https://newstomato.com/ReadNews.aspx?no=1133280"
+     ],
+     "컨셉": [
+      "https://kpinews.kr/newsView/1065593211099018"
+     ],
+     "가격": "https://economist.co.kr/article/view/ecn202212230005 (이코노미스트 2022.12.23: 2023.1.1부터 편의점 코카콜라 350mL 캔 2,000원, 펩시 355mL 캔 1,900원)",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체",
+     "도수": "탄산음료(무알코올)"
+    }
+   },
+   {
+    "id": "milkis_2023",
+    "real_name": "밀키스",
+    "maker": "롯데칠성음료",
+    "attrs": {
+     "종류": "탄산음료",
+     "용량": "340ml 캔",
+     "맛": "우유를 넣은 부드러운 맛의 탄산음료",
+     "컨셉": "2010년 이전부터 판매",
+     "가격": "편의점 340ml 캔 1,800원",
+     "포장": "하늘색·흰 캔",
+     "도수": "무알코올"
+    },
+    "_src": {
+     "종류": [
+      "https://m.dailian.co.kr/news/view/725268"
+     ],
+     "용량": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체",
+     "맛": [
+      "https://m.dailian.co.kr/news/view/725268"
+     ],
+     "컨셉": [
+      "https://news.bizwatch.co.kr/article/consumer/2023/02/14/0018"
+     ],
+     "가격": "추정: 같은 기준의 출처를 확인할 수 없어 당시 표준 가격으로 넣음. 정확한 데이터가 있으면 대체",
+     "포장": "추정: 당시 출처를 확인할 수 없어 일반적인 제품 외관으로 넣음. 정확한 자료가 있으면 대체",
+     "도수": "탄산음료(무알코올)"
+    }
+   }
+  ],
+  "_note": "같은 칸 대칭 카드. 용량은 250ml 캔으로 통일. 무알코올이라 도수 칸 없음 | 2026-11-04 16시 40분 작가 지시로 빠진 가격·포장 칸을 채움. 확인 못 한 값은 _src에 「추정」 표시",
+  "_dropped": {}
+ }
+]

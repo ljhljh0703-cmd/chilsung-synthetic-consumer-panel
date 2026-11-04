@@ -1,0 +1,13 @@
+{
+ "_source": "aT 식품산업통계 소매 POS(가정용 소매 판매액) 등. lane3_market.md [3-05]·[3-10]",
+ "beer_2019_known": {"category": "맥주", "basis": "2019년 2분기 소매 판매액(억 원), 더팩트 2019-08-27", "grade": "C",
+   "value": {"cass_2019": 3064, "hite_2019": 689, "cloud_2019": 201}},
+ "beer_2023_known": {"category": "맥주", "basis": "2023년 1분기 소매 판매액(십억 원), 대신증권 2024-04-29(aT POS)", "grade": "C",
+   "value": {"cass_2023": 351, "terra_2023": 127, "filite_2023": 57, "cloud_2023": 42}},
+ "beer_2019_annual_known": {"category": "맥주", "basis": "2019년 연간 소매 판매액(억 원), 아이뉴스24 2021-02-01 (기관 미표기)", "grade": "D",
+   "value": {"cass_2019": 11921, "terra": 2115, "hite_2019": 2417}},
+ "beer_2023h2_known": {"category": "맥주", "basis": "2023년 3·4분기 소매 판매액 합(십억 원), 대신증권 2024-04-29(aT POS)", "grade": "C",
+   "value": {"cass_2023": 793, "terra_2023": 221, "asahi_2023": 155, "kelly": 132, "filite_2023": 123}},
+ "soda_2023_known": {"category": "탄산", "basis": "2023년 소매 브랜드 점유율(%), 뉴스토마토 2023-06-01 (기관 미표기)", "grade": "D",
+   "value": {"coke_2023": 34.8, "cider_2021": 15.4, "pepsi_2023": 13.7, "milkis_2023": 5.7}}
+}

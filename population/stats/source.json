@@ -1,0 +1,38 @@
+{
+  "state": "provisional",
+  "gate": "gate_pending",
+  "provider": "KOSIS 국가통계포털",
+  "producer": "행정안전부 주민등록인구현황",
+  "table_id": "DT_1B04006",
+  "table_title": "행정구역(시군구)별/1세별 주민등록인구",
+  "url": "https://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_1B04006&conn_path=I2",
+  "reference_period": "2025-12",
+  "retrieved_at": "2026-11-04T14:03:04+09:00",
+  "retrieval_method": "Official browser UI: 조회설정 > 시점 2025.12 > 조회 > 다운로드 > CSV UTF-8",
+  "download_filename": "행정구역_시군구_별_1세별_주민등록인구_20261104140304.csv",
+  "raw_file": "kosis_202512_raw.csv",
+  "raw_bytes": 77902,
+  "raw_sha256": "eff07491b1b495c893f1723247c74081d32e4fc89041c5611fa1335c8c3969b9",
+  "normalized_file": "population_cells.csv",
+  "normalized_sha256": "883817f357678bf0801597fd4d1af8438eff9e8d0e6d0041f4bee0147e678d0d",
+  "normalized_cells": 306,
+  "population_age_19_99": 43969023,
+  "excluded": {
+    "age_0_18": 7139629,
+    "age_100_plus": 8726
+  },
+  "national_all_ages": 51117378,
+  "validation": {
+    "each_row_male_plus_female_equals_total": true,
+    "each_age_17_provinces_sum_equals_national": true,
+    "no_duplicate_province_age": true,
+    "all_306_cells_positive": true
+  },
+  "scope": "17시도 남녀 주민등록 인구 중 19~99세. band10은 19세만, band20은 20~29세, 이후 10세 구간. 전국 합계와 미성년 및 100세 이상은 가중 분모에서 제외.",
+  "limitations": [
+    "전체 거주인구 또는 소비자 패널이 아니며 등록 외국인은 포함하지 않는다.",
+    "2025-12 고정 기준. 최신 2026-10과는 시점 및 행정구역 구성이 다르다.",
+    "19~99세는 Nemotron 원본의 관측 연령 지지집합에 맞춘 범위이다. 100세 이상을 90대로 합치지 않았다.",
+    "인구 가중치가 행동·취향·SNS 관계망의 대표성을 보장하지 않는다."
+  ]
+}

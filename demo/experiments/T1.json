@@ -1,0 +1,4 @@
+{"name": "T1", "goal": "T0 + 장면을 마트·편의점으로 고정 (정답 자료가 소매 판매라서)",
+ "sets_file": "config/sets_known.json", "truth_file": "config/known_truth.json",
+ "flags": ["--scene", "동네 마트·편의점"], "n": 150,
+ "pass_rule": "T0보다 나빠지지 않음"}

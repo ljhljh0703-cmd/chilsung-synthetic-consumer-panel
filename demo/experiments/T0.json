@@ -1,0 +1,4 @@
+{"name": "T0", "goal": "1차와 같은 조건에서 기존 맥주 진열대가 실제 점유율 순서를 재현하는가",
+ "sets_file": "config/sets_known.json", "truth_file": "config/known_truth.json",
+ "flags": [], "n": 150,
+ "pass_rule": "작가가 정함 (예: 두 진열대 1위 일치 + 짝 맞힘률 기준)"}
