@@ -10,7 +10,7 @@ import shutil
 import server
 from ops_evidence import product_labels, reproduction
 
-BANNED = re.compile(r'/Users/|/private/tmp|OPENAI|sk-|X-Console-Token|\.jsonl|\bPOST\b|판정 대기|포기', re.I)
+BANNED = re.compile(r'/Users/|/private/tmp|OPENAI|sk-|X-Console-Token|\.jsonl|\bPOST\b|판정 대기|포기' + "|" + re.escape(Path.home().name), re.I)
 PRODUCT_NAMES = {'T2':'기존 경쟁 세트 재현','T4':'주음용 브랜드 재현'}
 SAFE_ACTIONS = {'승인','반려','실행 차단','정량 조사 후보 제안','정량 조사 후보 확정','정합성 결과 확인'}
 
