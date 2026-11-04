@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-11-04T10:35:57+00:00",
+  "commit": "e5128090dd3fd965f2df21468af9eb40bac956fe",
+  "source_sha256": {
+    "사전 등록": "ac04857d0983b19fe249a02722dde40f0f843700edeaa739d03120b918d500d8",
+    "정합성 요약": "e52077485e9f76fd1f438cfc724c7918cef3d1a968c09364819f204eaf8fbf66",
+    "T2 집계 보고서": "f8c09496c1eba29d5671aff82294bbe8b54fe8fbf3e6fa92375ba631225afb2c",
+    "T4 집계 보고서": "c37156ccf7d1c0b19a0f2cf4f5a6debfca594cb5c995368756986ff1a4b59436"
+  },
+  "verdict_fingerprint": "bf689cbc4df01a0af8e7926f8e2ad9d5657dd6902494ceced64bf6fbe185fe4e",
+  "data": [
+    {
+      "time": "2026-11-04T17:34:37+09:00",
+      "action": "승인",
+      "actor": "BM"
+    },
+    {
+      "time": "2026-11-04T17:34:38+09:00",
+      "action": "반려",
+      "actor": "조사 담당"
+    }
+  ]
+}

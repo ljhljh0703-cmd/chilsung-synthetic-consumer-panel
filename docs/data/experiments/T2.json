@@ -1,0 +1,154 @@
+{
+  "generated_at": "2026-11-04T10:35:57+00:00",
+  "commit": "e5128090dd3fd965f2df21468af9eb40bac956fe",
+  "source_sha256": {
+    "사전 등록": "ac04857d0983b19fe249a02722dde40f0f843700edeaa739d03120b918d500d8",
+    "정합성 요약": "e52077485e9f76fd1f438cfc724c7918cef3d1a968c09364819f204eaf8fbf66",
+    "T2 집계 보고서": "f8c09496c1eba29d5671aff82294bbe8b54fe8fbf3e6fa92375ba631225afb2c",
+    "T4 집계 보고서": "c37156ccf7d1c0b19a0f2cf4f5a6debfca594cb5c995368756986ff1a4b59436"
+  },
+  "verdict_fingerprint": "fb01c41052d0e80502f0d1c2324e634eb0e687bdf901cf4821c1bdfb823f8cb3",
+  "data": {
+    "title": "기존 경쟁 세트 재현",
+    "name": "T2",
+    "rows": [
+      {
+        "shelf": "맥주 2019년 출시 시점",
+        "actual": "카스 후레쉬 → 하이트 → 클라우드",
+        "virtual": "카스 후레쉬 → 클라우드 → 하이트",
+        "last_match": false,
+        "valid": 79,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2023년 상반기",
+        "actual": "카스 프레시 → 테라 → 필라이트 → 클라우드",
+        "virtual": "테라 → 필라이트 → 카스 프레시 → 클라우드",
+        "last_match": true,
+        "valid": 91,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2019년 연간",
+        "actual": "카스 후레쉬 → 하이트 → 테라",
+        "virtual": "테라 → 카스 후레쉬 → 하이트",
+        "last_match": false,
+        "valid": 89,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2023년 하반기",
+        "actual": "카스 프레시 → 테라 → 아사히 → 켈리 → 필라이트",
+        "virtual": "켈리 → 카스 프레시 → 필라이트 → 테라 = 아사히",
+        "last_match": false,
+        "valid": 81,
+        "total": 150
+      },
+      {
+        "shelf": "탄산 2023년",
+        "actual": "코카콜라 → 칠성사이다 → 펩시 → 밀키스",
+        "virtual": "칠성사이다 → 펩시 → 밀키스 → 코카콜라",
+        "last_match": false,
+        "valid": 97,
+        "total": 150
+      }
+    ],
+    "verdict": "보류",
+    "reason": "기존 경쟁 세트 재현 기준 미달",
+    "observations": [
+      {
+        "shelf": "맥주 2019년 출시 시점",
+        "valid": 79,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2023년 상반기",
+        "valid": 91,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2019년 연간",
+        "valid": 89,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2023년 하반기",
+        "valid": 81,
+        "total": 150
+      },
+      {
+        "shelf": "탄산 2023년",
+        "valid": 97,
+        "total": 150
+      }
+    ],
+    "sensitivity": {
+      "changed": 3,
+      "total": 5,
+      "max_shift_pp": 51.31856540084387,
+      "comparison_basis": "기록된 모델 라벨·배치·질문 조건·응답자·제품 ID 일치. 실제 모델 판본과 원인 관계를 독립 입증하지 않음.",
+      "rows": [
+        {
+          "id": "beer_2019_known",
+          "left_top": [
+            "cass_2019"
+          ],
+          "right_top": [
+            "cloud_2019"
+          ],
+          "max_shift_pp": 51.31856540084387,
+          "top_changed": true,
+          "spearman": -0.5
+        },
+        {
+          "id": "beer_2023_known",
+          "left_top": [
+            "terra_2023"
+          ],
+          "right_top": [
+            "cass_2023"
+          ],
+          "max_shift_pp": 38.91941391941392,
+          "top_changed": true,
+          "spearman": -0.4
+        },
+        {
+          "id": "beer_2019_annual_known",
+          "left_top": [
+            "terra"
+          ],
+          "right_top": [
+            "terra"
+          ],
+          "max_shift_pp": 27.764207783748574,
+          "top_changed": false,
+          "spearman": 0.5
+        },
+        {
+          "id": "beer_2023h2_known",
+          "left_top": [
+            "kelly"
+          ],
+          "right_top": [
+            "cass_2023"
+          ],
+          "max_shift_pp": 40.24066260353181,
+          "top_changed": true,
+          "spearman": 0.872081599272381
+        },
+        {
+          "id": "soda_2023_known",
+          "left_top": [
+            "cider_2021"
+          ],
+          "right_top": [
+            "cider_2021"
+          ],
+          "max_shift_pp": 18.064045251345682,
+          "top_changed": false,
+          "spearman": 1.0
+        }
+      ]
+    }
+  }
+}

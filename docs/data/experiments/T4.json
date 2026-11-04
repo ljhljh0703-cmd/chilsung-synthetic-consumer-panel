@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-11-04T10:35:57+00:00",
+  "commit": "e5128090dd3fd965f2df21468af9eb40bac956fe",
+  "source_sha256": {
+    "사전 등록": "ac04857d0983b19fe249a02722dde40f0f843700edeaa739d03120b918d500d8",
+    "정합성 요약": "e52077485e9f76fd1f438cfc724c7918cef3d1a968c09364819f204eaf8fbf66",
+    "T2 집계 보고서": "f8c09496c1eba29d5671aff82294bbe8b54fe8fbf3e6fa92375ba631225afb2c",
+    "T4 집계 보고서": "c37156ccf7d1c0b19a0f2cf4f5a6debfca594cb5c995368756986ff1a4b59436"
+  },
+  "verdict_fingerprint": "2cf67a717fec5942d112905743bf23d471d3daa92b574521bdcb9f5d69abe8d5",
+  "data": {
+    "title": "주음용 브랜드 재현",
+    "name": "T4",
+    "rows": [
+      {
+        "shelf": "맥주 2019년 출시 시점",
+        "actual": "카스 후레쉬 → 하이트 → 클라우드",
+        "virtual": "카스 후레쉬 → 하이트 = 클라우드",
+        "last_match": false,
+        "valid": 1,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2023년 상반기",
+        "actual": "카스 프레시 → 테라 → 필라이트 → 클라우드",
+        "virtual": "카스 프레시 → 테라 → 필라이트 → 클라우드",
+        "last_match": true,
+        "valid": 53,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2019년 연간",
+        "actual": "카스 후레쉬 → 하이트 → 테라",
+        "virtual": "카스 후레쉬 → 하이트 → 테라",
+        "last_match": true,
+        "valid": 76,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2023년 하반기",
+        "actual": "카스 프레시 → 테라 → 아사히 → 켈리 → 필라이트",
+        "virtual": "유효 응답 없음",
+        "last_match": false,
+        "valid": 0,
+        "total": 150
+      },
+      {
+        "shelf": "탄산 2023년",
+        "actual": "코카콜라 → 칠성사이다 → 펩시 → 밀키스",
+        "virtual": "코카콜라 → 칠성사이다 → 펩시 = 밀키스",
+        "last_match": false,
+        "valid": 3,
+        "total": 150
+      }
+    ],
+    "verdict": "보류",
+    "reason": "기존 경쟁 세트 재현 기준 미달",
+    "observations": [
+      {
+        "shelf": "맥주 2019년 출시 시점",
+        "valid": 1,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2023년 상반기",
+        "valid": 53,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2019년 연간",
+        "valid": 76,
+        "total": 150
+      },
+      {
+        "shelf": "맥주 2023년 하반기",
+        "valid": 0,
+        "total": 150
+      },
+      {
+        "shelf": "탄산 2023년",
+        "valid": 3,
+        "total": 150
+      }
+    ],
+    "sensitivity": {
+      "rows": []
+    }
+  }
+}
