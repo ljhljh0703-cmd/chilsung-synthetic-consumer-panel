@@ -8,7 +8,7 @@
 - 주 분석의 V1·V2·V3 대표성 기준은 모두 미달했습니다. 주종 순위 상관은 0.96, 평균 절대 차이는 19.10%p였습니다.
 - 운영 시연에서 대표성 미달로 신제품 가상 실행을 차단했습니다. 에이전트가 원인 진단과 선별을 수행했고, 작가가 새 검증을 승인했습니다.
 - 문항·응답 방식을 바꾼 새 검증에서도 남성 고위험음주율은 실제 18.4% 대비 1~2%였습니다. 이후 음주 프로필·주음용 브랜드는 실측 자료로 부여하고, 모델에는 진열대 선택만 묻도록 바꿨습니다.
-- [테라 결과]
+- 테라의 1순위 선택률(공개 2.92%, 가림 0.83%)은 사전 등록 방향과 달랐습니다(두 군 모두 하이트·클라우드보다 낮음). 부여만으로는 신제품 반응 방향을 재현하지 못했습니다.
 
 ## 주장과 근거
 
@@ -62,11 +62,11 @@
 | 층 | 확인 대상 | 근거와 적용 범위 |
 |---|---|---|
 | 부여 정확도 | 인구·음주·주음용 브랜드 구성 | KOSIS 인구 가중, [실제 음주 프로필 부여와 검증용 70% 비교][assignment], [aT 목표 비율 대비 배정][terra-assignment]. 구성 점검과 신제품 선택 판정은 별도입니다. |
-| 백테스트 | 2018년 4분기 출시 전 시장을 부여한 테라 진열대 | [사전 등록][terra-prereg]. 중립 7종, 이름 공개·가림 양쪽에서 테라가 카스보다 낮고 하이트·클라우드보다 높아야 통과. Claude는 참고입니다. |
+| 백테스트 | 2018년 4분기 출시 전 시장을 부여한 테라 진열대 | [사전 등록][terra-prereg]. 중립 7종, 이름 공개·가림 양쪽에서 테라가 카스보다 낮고 하이트·클라우드보다 높아야 통과. Claude Haiku 이름 공개군의 테라 선택률은 12.08%로 방향 A와 같았습니다. 판정에는 쓰지 않았습니다. |
 | 검증 절차 | 승인과 사전 등록, 집계 대조, 차단과 실패 기록 | 위 운영 프로세스 표와 공개 실행 기록. 기존 FIT 집계는 봉인 응답으로 별도 재계산해 대조했습니다. |
 
-- **부여 정확도** · [부여 정확도]
-- **테라 백테스트 판정** · [테라 결과]
+- **부여 정확도** · 주음용 브랜드 배정이 aT 점유율과 최대 3.3%p 차이, 음주 프로필은 실제 응답자 묶음 그대로
+- **테라 백테스트 판정** · 테라의 1순위 선택률(공개 2.92%, 가림 0.83%)은 사전 등록 방향과 달랐습니다(두 군 모두 하이트·클라우드보다 낮음). 부여만으로는 신제품 반응 방향을 재현하지 못했습니다.
 - **데이터 연결 계획** · 성·연령별 구매 자료는 브랜드 배정, 사내 조사 원자료는 보정·검증, 출시작 판매·단종은 과거 출시 검증, 실제 가격은 카드의 추정 칸 교체에 사용합니다.
 
 ## 재현 방법
@@ -92,6 +92,8 @@ python3 -B -m unittest discover -s ops-console -p test_gate.py
 
 ## 해석 한계
 
+- 테라의 비교 기준은 2019년 4분기 aT 2차 인용입니다. 하이트·클라우드의 해당 분기 단독값은 미확인이며, 2분기 기준에서는 하이트와 테라의 순위 방향이 반대입니다. 실패한 신제품 대조군은 없습니다.
+
 - 기관 통계와 합성 표본은 조사 시점·문항·연령 범위가 다릅니다. V3 기관 자료는 15세 이상, 합성 표본은 19세 이상입니다.
 - 1순위 선택률은 콘셉트 매력도 지표입니다. 실제 점유율이나 매출로 환산하지 않습니다.
 - T4 주음용 유효 선택은 133/750건이며 일부 세트에는 유효 선택이 없습니다. 사전 카드 스냅샷과 실행 전 카드 판본의 차이도 남아 있습니다.
@@ -116,5 +118,5 @@ python3 -B -m unittest discover -s ops-console -p test_gate.py
 
 [holdout-result]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/1e5aa02af4847979a6c8383cca2e33a965eb5325/explore/stage-c2.md
 [assignment]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/10856ab92b36269022d422d0c8185592b7b18350/explore/stage-p-assign.md
-[terra-assignment]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/f8fa7f2058d16b7b302cdccf2bc8487ddfe12e71/explore/stage-t-assign.md
-[terra-prereg]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/f8fa7f2058d16b7b302cdccf2bc8487ddfe12e71/preregistration-TERRA.md
+[terra-assignment]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/2ba1df53cc15b9f9df708f47fdebdaf73d000957/explore/stage-t-assign.md
+[terra-prereg]: https://github.com/ljhljh0703-cmd/chilsung-synthetic-consumer-panel/blob/2ba1df53cc15b9f9df708f47fdebdaf73d000957/preregistration-TERRA.md
