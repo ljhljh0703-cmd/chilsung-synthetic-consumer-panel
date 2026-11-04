@@ -1,0 +1,23 @@
+{
+  "state": "exploratory",
+  "affects_fit_verdict": false,
+  "plan_commit": "48d4b258af65bd3a58991564860f1425a78ca6d8",
+  "plan_sha256": "4b36a1836ecdbb562767a41363216f31bb136cf52d2a2957fd6b7423e0affe1b",
+  "request_count": 8,
+  "request_cap": 150,
+  "request_groups": [
+    {
+      "stage": 1,
+      "arm": "S1",
+      "route": "api",
+      "generation": 1,
+      "status": "error",
+      "model": null,
+      "count": 8
+    }
+  ],
+  "question_config_sha256": "9537abc6a30ca5da29d7177a145f08e4880973e024ca71b76efdbaf79323704c",
+  "arms": {},
+  "stop": "gpt-6.1-terra survey HTTP 429",
+  "eligible_for_next_approval": []
+}
