@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" width="720" height="108" viewBox="0 0 720 108">
+<title>조합 1 · 자료 1 · 응답률 비교</title>
+<rect width="720" height="108" fill="#fff"/>
+<g font-family="sans-serif" fill="#172132" font-size="13">
+<text x="12" y="20">조합 1 / V1 · 페르소나(파랑), 기관 통계(회색), 단위 %</text>
+<text x="12" y="56">전체</text>
+<rect x="220" y="38" width="410.0" height="13" fill="#2360a3"/>
+<text x="636.0" y="49">100.0</text>
+<rect x="220" y="56" width="244.8" height="13" fill="#6c757d"/>
+<text x="470.8" y="67">59.7</text>
+</g></svg>

@@ -10,6 +10,7 @@ HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE))
 import config_editor
 import analytics
+import fit_console
 PROJECT=Path(os.environ.get('OPS_PROJECT_ROOT', HERE.parent)).resolve()
 DEMO=Path(os.environ.get('OPS_DEMO_ROOT', HERE.parent/'demo')).resolve()
 STATE=Path(os.environ.get('OPS_STATE_DIR', HERE)).resolve()
@@ -183,6 +184,40 @@ def experiments():
         rows.append({'name':name,'status':status,'n':sp.get('n'),'model':settings.get('model','미실행'),'goal':sp.get('goal',''),'locked':(out/'spec_locked.json').exists()})
     return rows,ledger
 
+FIT_RULES = fit_console.FIT_RULES
+
+
+def fit_status():
+    return fit_console.fit_status(PROJECT, DEMO)
+
+
+def fit_gate(spec=None, benchmark=None, fit=None):
+    return fit_console.gate(fit or fit_status(), spec, benchmark)
+
+
+def fit_limits():
+    doc=PROJECT/'preregistration-FIT.md'
+    text=doc.read_text() if doc.is_file() else ''
+    section=re.search(r'^## 10\. [^\n]+\n(.*?)(?=^## |\Z)',text,re.M|re.S)
+    return [line[2:] for line in section[1].splitlines() if line.startswith('- ')] if section else []
+
+
+def overview():
+    s=state()
+    actions=s.get('actions',[])
+    held=[]
+    for name in ('T2','T3','T4'):
+        if (DEMO/'results'/name/'report.md').is_file():
+            info=detail(name)
+            if info['verdict']['status']=='fail':
+                held.append({'name':name,'reason':info['verdict']['reason']})
+    return {'held':held,'blocks':[row for row in actions if row['action']=='실행 차단'],
+            'rank_rejections':sum(row['action']=='순위 사용 승인 거절' for row in actions),
+            'shortlist':[x for x in s.get('shortlist',[]) if x.get('confirmed_by')],
+            'recent':actions[-5:][::-1],
+            'reproduction':'미달' if any(x['name'] in ('T2','T4') for x in held) else '확인 필요'}
+
+
 def make_spec(s,d):
     guard(s,['조사 담당']); name=ident(d['name']); p=DEMO/'experiments'/f'{name}.json'
     if p.exists() or (DEMO/'results'/name).exists():raise ValueError('기존 실험 이름은 쓸 수 없습니다. 새 이름으로 만드세요.')
@@ -224,12 +259,22 @@ def make_spec(s,d):
             snapshot=STATE/'config-snapshots'/name/(kind+'.json');dump(snapshot,item['data'],True)
             refs[kind]={'source':kind+'/config/'+filename,'sha256':item['sha256'],'snapshot':str(snapshot.relative_to(STATE))}
     spec['ops_config_refs']=refs
-    if receipt: spec['validation_reference']=ident(d.get('validation_reference') or 'T2')
+    if receipt:
+        spec['receipt_id']=receipt['id']
+        spec['validation_reference']=ident(d.get('validation_reference') or 'T2')
+        spec['flags'][spec['flags'].index('--batch')+1]='1'
+        if '--per-person-order' not in spec['flags']:spec['flags'].append('--per-person-order')
     dump(p,spec,True);event(s,'실험 설정',{'name':name,'spec':spec});return spec
 
 def mutate(action,d):
     with LOCK:
         s=state()
+        if action=='fit-review':
+            guard(s,['조사 담당'])
+            note=str(d.get('memo','')).strip()
+            fit=fit_status()
+            if not note or not fit.get('sha256'):raise ValueError('정합성 결과와 확인 메모가 필요합니다.')
+            event(s,'정합성 결과 확인',{'memo':note,'sha256':fit['sha256']});return {'status':'기록됨'}
         if action=='report':
             guard(s,ROLES);name=ident(d['name']);info=detail(name)
             lines=[info['display_report']]
@@ -277,9 +322,18 @@ def mutate(action,d):
             if not d.get('confirmed'):raise ValueError('실행 확인이 필요합니다.')
             if name in JOBS or (DEMO/'results'/name/'spec_locked.json').exists():raise ValueError('실행된 설정은 잠겨 있습니다. 새 이름으로 설정하세요.')
             if not name.startswith('OPS_'):raise ValueError('기존 실험 보호: 화면에서 OPS_로 시작하는 새 설정을 만드세요.')
-            if sp.get('validation_reference'):
-                ref=detail(sp['validation_reference'])
-                if ref['checks']['reproduction']!='pass':raise ValueError('먼저 연결한 기존 진열대 재현을 통과해야 합니다. 지금은 사람 조사로 넘기세요.')
+            eligibility=None
+            if sp.get('validation_reference') or sp.get('receipt_id'):
+                ref_name=sp.get('validation_reference')
+                ref=detail(ref_name) if ref_name else None
+                recorded=read(DEMO/'results'/str(ref_name)/'settings.json',{}) if ref else {}
+                benchmark={'status':ref['checks']['reproduction'],'population_id':recorded.get('population_id'),
+                           'model':str(recorded.get('model','')).split(':')[-1]} if ref else None
+                eligibility=fit_gate(sp,benchmark)
+                if not eligibility['allowed']:
+                    s['jobs'][name]={'status':'막힘'}
+                    event(s,'실행 차단',{'name':name,'stage':eligibility['stage'],'reason':eligibility['reason']})
+                    raise ValueError(f"{eligibility['stage']}단계 · {eligibility['reason']}")
             stub=bool(d.get('stub',False))
             if stub and os.environ.get('OPS_ALLOW_STUB')!='1':raise ValueError('가짜 응답은 격리 시험 서버에서만 허용됩니다.')
             py=os.environ.get('OPS_PYTHON',sys.executable)
@@ -290,6 +344,8 @@ def mutate(action,d):
             def job():
                 try:
                     env=os.environ.copy()
+                    if eligibility:
+                        env['LLM_BACKEND']=eligibility['backend'];env['LLM_MODEL']=eligibility['model']
                     if stub:env['PYTHONPATH']=str(HERE/'stub')+os.pathsep+env.get('PYTHONPATH','');env['OPS_STUB']='1'
                     with (STATE/'logs'/f'{name}.log').open('w') as log:r=subprocess.run([py,str(DEMO/'run_experiment.py'),f'experiments/{name}.json'],cwd=DEMO,env=env,stdout=log,stderr=subprocess.STDOUT)
                     result='끝' if r.returncode==0 else '실패'
@@ -353,8 +409,10 @@ class Handler(BaseHTTPRequestHandler):
         u=urlparse(self.path)
         try:
             if u.path=='/':return self.output((HERE/'index.html').read_text(),ctype='text/html; charset=utf-8')
+            if u.path=='/fit_view.js':return self.output((HERE/'fit_view.js').read_text(),ctype='text/javascript; charset=utf-8')
+            if u.path=='/api/fit':return self.output(fit_status())
             if u.path=='/api/state':
-                ex,led=experiments();return self.output({'state':state(),'experiments':ex,'ledger':led,'products':specimens(),'token':TOKEN,'demo':str(DEMO),'stub_allowed':os.environ.get('OPS_ALLOW_STUB')=='1','configs':config_editor.inventory(PROJECT)})
+                fit=fit_status();ex,led=experiments();return self.output({'state':state(),'fit':fit,'fit_gate':fit_gate(fit=fit),'fit_limits':fit_limits(),'overview':overview(),'experiments':ex,'ledger':led,'products':specimens(),'token':TOKEN,'demo':str(DEMO),'stub_allowed':os.environ.get('OPS_ALLOW_STUB')=='1','configs':config_editor.inventory(PROJECT)})
             if u.path=='/api/config':
                 q=parse_qs(u.query);return self.output(config_editor.get(PROJECT,q['kind'][0],q['name'][0]))
             if u.path=='/api/detail':return self.output(detail(parse_qs(u.query)['name'][0]))

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" width="720" height="156" viewBox="0 0 720 156">
+<title>조합 3 · 자료 1 · 응답률 비교</title>
+<rect width="720" height="156" fill="#fff"/>
+<g font-family="sans-serif" fill="#172132" font-size="13">
+<text x="12" y="20">조합 3 / V1 · 페르소나(파랑), 기관 통계(회색), 단위 %</text>
+<text x="12" y="56">남자</text>
+<rect x="220" y="38" width="353.6" height="13" fill="#2360a3"/>
+<text x="579.6" y="49">86.2</text>
+<rect x="220" y="56" width="279.6" height="13" fill="#6c757d"/>
+<text x="505.6" y="67">68.2</text>
+<text x="12" y="104">여자</text>
+<rect x="220" y="86" width="145.5" height="13" fill="#2360a3"/>
+<text x="371.5" y="97">35.5</text>
+<rect x="220" y="104" width="210.7" height="13" fill="#6c757d"/>
+<text x="436.7" y="115">51.4</text>
+</g></svg>

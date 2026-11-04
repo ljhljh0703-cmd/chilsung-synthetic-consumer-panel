@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" width="720" height="348" viewBox="0 0 720 348">
+<title>조합 4 · 자료 2 · 응답률 비교</title>
+<rect width="720" height="348" fill="#fff"/>
+<g font-family="sans-serif" fill="#172132" font-size="13">
+<text x="12" y="20">조합 4 / V2 · 페르소나(파랑), 기관 통계(회색), 단위 %</text>
+<text x="12" y="56">남자 19~39</text>
+<rect x="220" y="38" width="239.2" height="13" fill="#2360a3"/>
+<text x="465.2" y="49">58.3</text>
+<rect x="220" y="56" width="196.0" height="13" fill="#6c757d"/>
+<text x="422.0" y="67">47.8</text>
+<text x="12" y="104">남자 40~59</text>
+<rect x="220" y="86" width="225.8" height="13" fill="#2360a3"/>
+<text x="451.8" y="97">55.1</text>
+<rect x="220" y="104" width="223.9" height="13" fill="#6c757d"/>
+<text x="449.9" y="115">54.6</text>
+<text x="12" y="152">남자 60+</text>
+<rect x="220" y="134" width="160.8" height="13" fill="#2360a3"/>
+<text x="386.8" y="145">39.2</text>
+<rect x="220" y="152" width="141.0" height="13" fill="#6c757d"/>
+<text x="367.0" y="163">34.4</text>
+<text x="12" y="200">여자 19~39</text>
+<rect x="220" y="182" width="210.5" height="13" fill="#2360a3"/>
+<text x="436.5" y="193">51.3</text>
+<rect x="220" y="200" width="153.3" height="13" fill="#6c757d"/>
+<text x="379.3" y="211">37.4</text>
+<text x="12" y="248">여자 40~59</text>
+<rect x="220" y="230" width="142.1" height="13" fill="#2360a3"/>
+<text x="368.1" y="241">34.7</text>
+<rect x="220" y="248" width="89.0" height="13" fill="#6c757d"/>
+<text x="315.0" y="259">21.7</text>
+<text x="12" y="296">여자 60+</text>
+<rect x="220" y="278" width="69.1" height="13" fill="#2360a3"/>
+<text x="295.1" y="289">16.9</text>
+<rect x="220" y="296" width="28.7" height="13" fill="#6c757d"/>
+<text x="254.7" y="307">7.0</text>
+</g></svg>
